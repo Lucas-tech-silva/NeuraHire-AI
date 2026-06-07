@@ -26,9 +26,9 @@
       class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
     ></div>
 
-    <!-- =====================================================
-        SIDEBAR
-    ===================================================== -->
+    <!-- ===================================== -->
+    <!-- SIDEBAR -->
+    <!-- ===================================== -->
     <aside
       id="sidebar"
       class="fixed left-0 top-0 z-50 h-screen w-[16.3rem] flex flex-col bg-(--bg-secondary) border-r border-(--border-default) -translate-x-full lg:translate-x-0 transition-transform duration-300"
@@ -43,7 +43,10 @@
 
       <!-- Sidebar Header -->
       <div class="border-b border-r border-(--border-default) p-5">
-        <a class="flex items-center gap-3">
+        <a
+          data-page="home"
+          class="page-link flex items-center gap-3 cursor-pointer"
+        >
           <img
             src="./assets/NeuraHire-AI-Logo.png"
             alt="Logo da NeuraHire"
@@ -187,9 +190,9 @@
       </div>
     </aside>
 
-    <!-- =====================================================
-        HEADER
-    ===================================================== -->
+    <!-- ===================================== -->
+    <!-- HEADER -->
+    <!-- ===================================== -->
     <header
       class="fixed top-0 left-0 lg:left-[16.3rem] right-0 h-16 bg-(--bg-secondary)/80 backdrop-blur-sm border-b border-(--border-default) z-10"
     >
@@ -242,9 +245,9 @@
     <div class="flex flex-col min-h-screen lg:ml-[16.3rem]">
       <!-- Main Content -->
       <main class="flex-1 pt-18 px-4 sm:px-6">
-        <!-- =====================================================
-            HOME
-        ===================================================== -->
+        <!-- ===================================== -->
+        <!-- HOME -->
+        <!-- ===================================== -->
         <section id="home" class="page">
           <!-- Hero Section -->
           <section
@@ -341,10 +344,9 @@
             </div>
           </section>
 
-          <!-- =====================================================
-              AI Tools Section
-          ===================================================== -->
-
+          <!-- ===================================== -->
+          <!-- AI Tools Section -->
+          <!-- ===================================== -->
           <section>
             <!-- Section Header -->
             <div class="flex flex-col items-center gap-1.5 m-8.5">
@@ -478,10 +480,9 @@
             </div>
           </section>
 
-          <!-- =====================================================
-              Platform Modes
-          ===================================================== -->
-
+          <!-- ===================================== -->
+          <!-- Platform Modes -->
+          <!-- ===================================== -->
           <section>
             <div class="plataform-grid">
               <!-- Candidate Mode -->
@@ -690,10 +691,9 @@
           </section>
         </section>
 
-        <!-- =====================================================
-            AI WORKSPACE
-        ===================================================== -->
-
+        <!-- ===================================== -->
+        <!-- AI WORKSPACE -->
+        <!-- ===================================== -->
         <section id="workspace" class="page">
           <!-- WORKSPACE ROOT -->
           <div
@@ -775,9 +775,9 @@
           </div>
         </section>
 
-        <!-- =====================================================
-            AI TOOLS
-        ===================================================== -->
+        <!-- ===================================== -->
+        <!-- AI WORKSPACE -->
+        <!-- ===================================== -->
         <section id="tools" class="page">
           <div class="tools-header">
             <div class="tools-search">
@@ -1057,10 +1057,9 @@
           </div>
         </section>
 
-        <!-- =====================================================
-            INSIGHTS
-        ===================================================== -->
-
+        <!-- ===================================== -->
+        <!-- INSIGHTS -->
+        <!-- ===================================== -->
         <section id="insights" class="page my-5">
           <!-- TOP CARDS (KPI) -->
           <div class="insights-grid">
@@ -1280,11 +1279,621 @@
             </div>
           </div>
         </section>
+
+        <!-- SETTINGS -->
+        <section id="settings" class="page max-w-2xl space-y-6 my-5">
+          <!-- APPEARANCE -->
+          <div class="settings-card">
+            <div class="flex items-center mb-5">
+              <div class="settings-header flex items-center gap-2">
+                <i data-lucide="palette" class="text-(--text-tertiary)"></i>
+                <h3 class="settings-title">Aparência</h3>
+              </div>
+            </div>
+
+            <!-- ITEM: TEMA -->
+            <div
+              class="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6 pt-4 mt-4 border-t border-white/5"
+            >
+              <div class="flex-1 min-w-0">
+                <h4 class="settings-item-title">Tema atual</h4>
+                <p class="settings-item-description">
+                  O NeuraHire AI utiliza automaticamente o modo escuro para
+                  melhor foco e contraste
+                </p>
+              </div>
+
+              <div
+                class="px-3 py-1 rounded-md text-sm bg-(--bg-span-tools) text-(--text-secondary) shrink-0 whitespace-nowrap"
+              >
+                Dark Mode
+              </div>
+            </div>
+          </div>
+
+          <!-- AI -->
+          <div class="settings-card">
+            <div class="flex items-center mb-5">
+              <div class="settings-header flex items-center gap-2">
+                <i data-lucide="brain" class="text-(--text-tertiary)"></i>
+                <h3 class="settings-title">Preferências de IA</h3>
+              </div>
+            </div>
+
+            <!-- FIELD -->
+            <div class="settings-field">
+              <label class="settings-item-title"
+                >Nível de Detalhe dos Relatórios</label
+              >
+              <p class="settings-item-description">
+                Define a profundidade das análises geradas pela IA
+              </p>
+
+              <select class="settings-select">
+                <option>Resumido</option>
+                <option selected>Detalhado</option>
+                <option>Extensivo</option>
+              </select>
+            </div>
+
+            <!-- FIELD -->
+            <div class="settings-field">
+              <label class="settings-item-title">Tom das Recomendações</label>
+              <p class="settings-item-description">
+                Controla o estilo de comunicação da IA
+              </p>
+
+              <select class="settings-select">
+                <option>Direto e Objetivo</option>
+                <option selected>Construtivo e Encorajador</option>
+                <option>Acadêmico e Formal</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- SYSTEM -->
+          <div class="settings-card">
+            <div class="flex items-center mb-5">
+              <div class="settings-header flex items-center gap-2">
+                <i data-lucide="settings" class="text-(--text-tertiary)"></i>
+                <h3 class="settings-title">Sistema</h3>
+              </div>
+            </div>
+
+            <!-- ITEM -->
+            <div
+              class="flex items-center justify-between gap-6 pt-4 mt-4 border-t border-white/5"
+            >
+              <div class="flex-1 min-w-0">
+                <h4 class="settings-item-title">Versão do sistema</h4>
+                <p class="settings-item-description">
+                  NeuraHire AI v1.0 (Beta)
+                </p>
+              </div>
+            </div>
+
+            <!-- ITEM -->
+            <div
+              class="flex items-center justify-between gap-6 pt-4 mt-4 border-t border-white/5"
+            >
+              <div class="flex-1 min-w-0">
+                <h4 class="settings-item-title">Atualizações</h4>
+                <p class="settings-item-description">
+                  Acompanhe o
+                  <span
+                    data-page="labs"
+                    class="page-link text-emerald-400 hover:text-emerald-300 cursor-pointer"
+                  >
+                    roadmap do produto
+                  </span>
+                  para visualizar novos recursos e melhorias planejadas.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================== -->
+        <!-- NEURA LABS -->
+        <!-- ===================================== -->
+        <section
+          id="labs"
+          class="page max-w-6xl mx-auto space-y-8 my-5 px-4 sm:px-6 lg:px-0"
+        >
+          <!-- HEADER MAIN -->
+          <div
+            class="relative overflow-hidden bg-(--bg-card) border border-(--border-default) rounded-2xl p-5 sm:p-6 lg:p-8 labs-cards"
+          >
+            <div
+              class="absolute -top-20 -right-20 w-60 h-60 bg-emerald-500/10 blur-3xl rounded-full"
+            ></div>
+
+            <div class="flex items-center gap-3 mb-4">
+              <div class="p-2 rounded-lg bg-white/5 border border-white/10">
+                <i
+                  data-lucide="compass"
+                  class="text-(--text-tertiary) stroke-[2.5]"
+                ></i>
+              </div>
+              <h2 class="text-white font-semibold text-lg sm:text-xl">
+                Nossa Visão
+              </h2>
+            </div>
+
+            <p
+              class="text-(--text-secondary) text-sm leading-relaxed max-w-3xl"
+            >
+              A NeuraHire AI nasceu com a convicção de que a inteligência
+              artificial pode transformar o recrutamento de maneira ética,
+              eficiente e humana. Nosso objetivo é eliminar o viés inconsciente,
+              acelerar decisões de qualidade e capacitar tanto candidatos quanto
+              recrutadores com insights de nível estratégico, gerados em
+              segundos.
+            </p>
+          </div>
+
+          <!-- GRID MAIN -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+            <div
+              class="bg-(--bg-card) border border-(--border-default) rounded-2xl p-5 sm:p-6 labs-cards"
+            >
+              <div class="flex items-center gap-3 mb-3">
+                <i
+                  data-lucide="shield-check"
+                  class="text-(--text-tertiary)"
+                ></i>
+                <h3 class="text-white font-semibold">Nossa Missão</h3>
+              </div>
+              <p class="text-sm text-(--text-secondary)">
+                Transformar o recrutamento com IA ética, eficiente e centrada em
+                pessoas.
+              </p>
+            </div>
+
+            <div
+              class="bg-(--bg-card) border border-(--border-default) rounded-2xl p-5 sm:p-6 labs-cards"
+            >
+              <div class="flex items-center gap-3 mb-3">
+                <i data-lucide="lock" class="text-(--text-tertiary)"></i>
+                <h3 class="text-white font-semibold">Privacidade</h3>
+              </div>
+              <p class="text-sm text-(--text-secondary)">
+                Dados criptografados e conformidade total com LGPD e padrões de
+                segurança.
+              </p>
+            </div>
+
+            <div
+              class="bg-(--bg-card) border border-(--border-default) rounded-2xl p-5 sm:p-6 labs-cards"
+            >
+              <div class="flex items-center gap-3 mb-3">
+                <i data-lucide="lightbulb" class="text-(--text-tertiary)"></i>
+                <h3 class="text-white font-semibold">Inovação</h3>
+              </div>
+              <p class="text-sm text-(--text-secondary)">
+                Pesquisa contínua em IA para melhorar decisões de recrutamento.
+              </p>
+            </div>
+
+            <div
+              class="bg-(--bg-card) border border-(--border-default) rounded-2xl p-5 sm:p-6 labs-cards"
+            >
+              <div class="flex items-center gap-3 mb-3">
+                <i data-lucide="users" class="text-(--text-tertiary)"></i>
+                <h3 class="text-white font-semibold">Impacto Humano</h3>
+              </div>
+              <p class="text-sm text-(--text-secondary)">
+                A IA potencializa decisões humanas sem substituí-las.
+              </p>
+            </div>
+          </div>
+
+          <!-- ROADMAP -->
+          <div
+            class="bg-(--bg-card) border border-(--border-default) rounded-2xl px-5 py-8 sm:p-8 space-y-15 labs-cards"
+          >
+            <!-- HEADER -->
+            <div
+              class="flex flex-col md:flex-row md:items-center md:justify-between gap-5"
+            >
+              <div class="flex items-center gap-3">
+                <i data-lucide="map-pinned" class="text-(--text-tertiary)"></i>
+                <h3 class="text-(--text-primary) font-semibold text-xl">
+                  Roadmap do Produto
+                </h3>
+              </div>
+
+              <!-- DESKTOP + MOBILE LEGEND -->
+              <div
+                class="flex flex-wrap md:flex-nowrap items-center gap-x-4 gap-y-2 text-[11px] text-(--text-secondary)"
+              >
+                <div class="flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-(--status-done)"></span>
+                  <span>Concluído</span>
+                </div>
+
+                <div class="flex items-center gap-1.5">
+                  <span
+                    class="w-2 h-2 rounded-full bg-(--status-active)"
+                  ></span>
+                  <span>Em progresso</span>
+                </div>
+
+                <div class="flex items-center gap-1.5">
+                  <span
+                    class="w-2 h-2 rounded-full bg-(--status-pending)"
+                  ></span>
+                  <span>Planejado</span>
+                </div>
+
+                <div class="flex items-center gap-1.5">
+                  <span
+                    class="w-2 h-2 rounded-full bg-(--status-future)"
+                  ></span>
+                  <span>Futuro</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Q2 -->
+            <div
+              class="relative border-l border-emerald-500/30 pl-5 sm:pl-6 space-y-4"
+            >
+              <div class="absolute -left-1.5 -top-3">
+                <div class="w-2.5 h-2.5 rounded-full bg-(--status-done)"></div>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+                <span
+                  class="text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider bg-emerald-500/10 text-(--status-done)"
+                >
+                  Q2 2026
+                </span>
+                <span class="text-sm font-semibold text-(--text-primary)">
+                  Lançamento v1.0
+                </span>
+              </div>
+
+              <ul class="space-y-3 text-xs lg:text-sm text-(--text-secondary)">
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="h-3 w-3 mt-0.5 text-(--status-done) shrink-0"
+                  ></i>
+                  <span>8 ferramentas de IA para recrutamento</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="h-3 w-3 mt-0.5 text-(--status-done) shrink-0"
+                  ></i>
+                  <span>Modo candidato e recrutador</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="h-3 w-3 mt-0.5 text-(--status-done) shrink-0"
+                  ></i>
+                  <span>Análise de currículo com IA</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="h-3 w-3 mt-0.5 text-(--status-done) shrink-0"
+                  ></i>
+                  <span>Simulação de entrevistas</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Q3 -->
+            <div
+              class="relative border-l border-amber-500/30 pl-5 sm:pl-6 space-y-4"
+            >
+              <div class="absolute -left-1.5 -top-3">
+                <div
+                  class="w-2.5 h-2.5 rounded-full bg-(--status-active) animate-pulse"
+                ></div>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+                <span
+                  class="text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider bg-amber-500/10 text-(--status-active)"
+                >
+                  Q3 2026
+                </span>
+                <span class="text-sm font-semibold text-(--text-primary)">
+                  Expansão de Recursos
+                </span>
+              </div>
+
+              <ul class="space-y-3 text-xs lg:text-sm text-(--text-secondary)">
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="loader-circle"
+                    class="h-3 w-3 mt-0.5 text-(--status-active) shrink-0 animate-spin"
+                  ></i>
+                  <span>Integração com LinkedIn</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="loader-circle"
+                    class="h-3 w-3 mt-0.5 text-(--status-active) shrink-0 animate-spin"
+                  ></i>
+                  <span>Análise de sentimento em entrevistas</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="loader-circle"
+                    class="h-3 w-3 mt-0.5 text-(--status-active) shrink-0 animate-spin"
+                  ></i>
+                  <span>Melhorias na análise de currículos</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Q4 (PLANEJADO) -->
+            <div
+              class="relative border-l border-zinc-500/30 pl-5 sm:pl-6 space-y-4"
+            >
+              <div class="absolute -left-1.5 -top-3">
+                <div
+                  class="w-2.5 h-2.5 rounded-full bg-(--status-pending)"
+                ></div>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+                <span
+                  class="text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider bg-zinc-400/10 text-(--status-pending)"
+                >
+                  Q4 2026
+                </span>
+                <span class="text-sm font-semibold text-(--text-primary)">
+                  Otimizações e Escala
+                </span>
+              </div>
+
+              <ul class="space-y-3 text-xs lg:text-sm text-(--text-secondary)">
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="circle"
+                    class="h-3 w-3 mt-0.5 text-(--status-pending) shrink-0"
+                  ></i>
+                  <span>Modernização do Front-end com React</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="circle"
+                    class="h-3 w-3 mt-0.5 text-(--status-pending) shrink-0"
+                  ></i>
+                  <span>Otimização de performance da plataforma</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="circle"
+                    class="h-3 w-3 mt-0.5 text-(--status-pending) shrink-0"
+                  ></i>
+                  <span>Melhorias no sistema de recomendação</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- FUTURO (VISÃO) -->
+            <div
+              class="relative border-l border-blue-500/30 pl-5 sm:pl-6 space-y-4"
+            >
+              <div class="absolute -left-1.5 -top-3">
+                <div
+                  class="w-2.5 h-2.5 rounded-full bg-(--status-future)"
+                ></div>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+                <span
+                  class="text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider bg-blue-500/10 text-(--status-future)"
+                >
+                  2027+
+                </span>
+                <span class="text-sm font-semibold text-(--text-primary)">
+                  Visão de Futuro
+                </span>
+              </div>
+
+              <ul class="space-y-3 text-xs lg:text-sm text-(--text-secondary)">
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="sparkles"
+                    class="h-3.5 w-3.5 mt-0.5 text-(--status-future) shrink-0"
+                  ></i>
+                  <span
+                    >Matching mais inteligente entre candidatos e vagas</span
+                  >
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="sparkles"
+                    class="h-3.5 w-3.5 mt-0.5 text-(--status-future) shrink-0"
+                  ></i>
+                  <span>Recomendações personalizadas para candidatos</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="sparkles"
+                    class="h-3.5 w-3.5 mt-0.5 text-(--status-future) shrink-0"
+                  ></i>
+                  <span>Evolução contínua da plataforma</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- TECHNOLOGIES -->
+          <div
+            class="bg-(--bg-card) border border-(--border-default) rounded-2xl p-5 sm:p-6 lg:p-6 labs-cards"
+          >
+            <div class="flex items-center gap-2 mb-4">
+              <i data-lucide="cpu" class="text-(--text-tertiary)"></i>
+              <h3 class="text-white font-semibold">Tecnologias</h3>
+            </div>
+
+            <div class="flex flex-wrap gap-2.5">
+              <span class="skill-chip">JavaScript</span>
+              <span class="skill-chip">HTML5</span>
+              <span class="skill-chip">CSS3</span>
+              <span class="skill-chip">Tailwind CSS</span>
+              <span class="skill-chip">Node.js</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================== -->
+        <!-- CONTACT -->
+        <!-- ===================================== -->
+        <section id="contact" class="page">
+          <div class="max-w-5xl mx-auto px-4 py-10">
+            <!-- HEADER -->
+            <div class="mb-8">
+              <h2 class="text-2xl font-bold text-white">Contato</h2>
+              <p class="text-sm text-gray-400 mt-1">
+                Empresas, recrutadores ou parceiros — me chame por aqui ou nas
+                redes.
+              </p>
+            </div>
+
+            <!-- GRID -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div class="contact-list space-y-4">
+                <a
+                  href="mailto:lucassilva1710@yahoo.com"
+                  target="_blank"
+                  class="contact-card"
+                >
+                  <i data-lucide="mail" class="contact-icon"></i>
+                  <div>
+                    <p class="contact-title">Email</p>
+                    <p class="contact-text">lucassilva1710@yahoo.com</p>
+                  </div>
+                </a>
+
+                <a
+                  href="https://github.com/Lucas-tech-silva"
+                  target="_blank"
+                  class="contact-card"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="contact-icon"
+                  >
+                    <path
+                      d="M12 .5C5.73.5.75 5.64.75 12.17c0 5.2 3.44 9.6 8.21 11.16.6.12.82-.27.82-.58v-2.1c-3.34.75-4.04-1.65-4.04-1.65-.55-1.44-1.34-1.82-1.34-1.82-1.1-.78.08-.77.08-.77 1.21.09 1.85 1.28 1.85 1.28 1.08 1.9 2.83 1.35 3.52 1.03.11-.81.42-1.35.76-1.66-2.66-.31-5.46-1.37-5.46-6.09 0-1.35.47-2.45 1.24-3.31-.12-.31-.54-1.56.12-3.25 0 0 1.01-.33 3.3 1.26.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.29-1.59 3.3-1.26 3.3-1.26.66 1.69.24 2.94.12 3.25.77.86 1.24 1.96 1.24 3.31 0 4.73-2.81 5.77-5.49 6.08.43.37.82 1.1.82 2.22v3.29c0 .31.22.7.83.58 4.76-1.56 8.2-5.96 8.2-11.16C23.25 5.64 18.27.5 12 .5Z"
+                    />
+                  </svg>
+
+                  <div>
+                    <p class="contact-title">GitHub</p>
+                    <p class="contact-text">github.com/Lucas-tech-silva</p>
+                  </div>
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/in/lucassilva-developer/"
+                  target="_blank"
+                  class="contact-card"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="contact-icon"
+                  >
+                    <path
+                      d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2h.1c.53-1 1.83-2.2 3.8-2.2 4.1 0 4.9 2.7 4.9 6.2V24h-4v-7.5c0-1.8-.03-4.1-2.5-4.1s-2.9 2-2.9 4V24h-4V8z"
+                    />
+                  </svg>
+
+                  <div>
+                    <p class="contact-title">LinkedIn</p>
+                    <p class="contact-text">
+                      linkedin.com/in/lucassilva-developer
+                    </p>
+                  </div>
+                </a>
+              </div>
+
+              <!-- RIGHT - FORM (FORMSUBMIT) -->
+              <div class="p-6 rounded-xl bg-[#1e1e22] border border-[#2e2e34]">
+                <h3 class="text-lg font-semibold text-white mb-4">
+                  Enviar mensagem
+                </h3>
+
+                <form
+                  action="https://formsubmit.co/lucassilva1710@yahoo.com"
+                  method="POST"
+                  class="space-y-4"
+                >
+                  <!-- HIDDEN CONFIG -->
+                  <input type="hidden" name="_captcha" value="false" />
+
+                  <!-- NAME -->
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Seu nome"
+                    class="w-full p-3 rounded-lg bg-[#131316] border border-[#2e2e34] text-white outline-none focus:border-emerald-500/40 transition-all duration-300 ease-out"
+                    required
+                  />
+
+                  <!-- EMAIL -->
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Seu email"
+                    class="w-full p-3 rounded-lg bg-[#131316] border border-[#2e2e34] text-white outline-none focus:border-emerald-500/40 transition-all duration-300 ease-out"
+                    required
+                  />
+
+                  <!-- MESSAGE -->
+                  <div class="relative">
+                    <textarea
+                      name="message"
+                      placeholder="Sua mensagem..."
+                      maxlength="1000"
+                      rows="5"
+                      class="w-full p-3 rounded-lg bg-[#131316] border border-[#2e2e34] text-white outline-none resize-none focus:border-emerald-500/40 transition-all duration-300 ease-out"
+                      required
+                    ></textarea>
+
+                    <p class="text-xs text-gray-400 mt-1 flex justify-end">
+                      <span id="char-count">0</span>/1000 caracteres
+                    </p>
+                  </div>
+
+                  <!-- BUTTON -->
+                  <button
+                    type="submit"
+                    class="w-full py-3 rounded-lg cursor-pointer bg-(--bg-button) hover:brightness-75 text-white font-semibold transition-all duration-300 ease-out"
+                  >
+                    Enviar mensagem
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
-      <!-- =====================================================
-          Footer
-      ===================================================== -->
+      <!-- ===================================== -->
+      <!-- FOOTER -->
+      <!-- ===================================== -->
       <footer
         class="flex flex-wrap flex-col md:flex-row items-center justify-center gap-6 h-auto py-8 mx-6 border-t border-(--border-default) text-sm text-(--text-subtitle)"
         id="footer"

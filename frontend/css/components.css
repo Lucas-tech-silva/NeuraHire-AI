@@ -63,7 +63,7 @@
 .sidebar-link.active:hover {
   box-shadow:
     var(--shadow-green-soft),
-    0 0 15px var(--glass-green-2);
+    0 0 10px var(--glass-green-2);
 }
 
 
@@ -414,11 +414,6 @@
   }
 }
 
-
-
-
-
-
 /* =========================================================
    INSIGHTS
 ========================================================= */
@@ -723,4 +718,187 @@
   .insights-bottom {
     grid-template-columns: repeat(4, 1fr);
   }
+}
+
+/* =========================
+   SETTINGS CARD
+========================= */
+
+.settings-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: 0.9rem;
+  padding: 1rem;
+  transition: 0.2s ease;
+}
+
+.settings-card:hover {
+  border-color: var(--hover-border);
+  box-shadow: 0 0 0 3px var(--glass-green);
+}
+
+.settings-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-1);
+}
+
+.settings-item-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.settings-item-description {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+  line-height: 1.4;
+}
+
+.settings-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 1rem;
+}
+
+.settings-select {
+  padding: 0.65rem 0.8rem;
+  background: var(--bg-card);
+  cursor: pointer;
+  border-radius: 0.6rem;
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+  outline: none;
+  transition: all 200ms ease;
+}
+
+.settings-select:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--glass-green);
+  transform: translateY(-2px);
+}
+
+/* =========================
+   TABLET
+========================= */
+@media (min-width: 768px) {
+  .settings-card {
+    padding: 1.3rem;
+  }
+
+  .settings-title {
+    font-size: 1rem;
+  }
+}
+
+/* =========================
+   DESKTOP
+========================= */
+@media (min-width: 1200px) {
+  .settings-card {
+    padding: 1.5rem;
+  }
+
+  .settings-title {
+    font-size: 1.05rem;
+  }
+}
+
+/* =========================
+   CONTACT CARD
+========================= */
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 0.9rem;
+  border-radius: 0.75rem;
+
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+
+  transition: 0.25s ease;
+  text-decoration: none;
+}
+
+.contact-card:hover {
+  border-color: var(--hover-border);
+  box-shadow: 0 0 0 3px var(--glass-green);
+}
+
+.contact-card:active {
+  transform: scale(0.98);
+}
+
+.contact-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--text-tertiary);
+}
+
+.contact-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.contact-text {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  transition: color 0.25s ease;
+}
+
+.contact-card:hover .contact-text {
+  color: var(--text-tertiary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* =========================
+   TABLET
+========================= */
+@media (min-width: 768px) {
+  .contact-card {
+    padding: 1rem;
+  }
+}
+
+/* =========================================================
+   COMPONENTS — LABS CARDS
+========================================================= */
+
+.labs-cards {
+  transition: all 200ms ease;
+}
+
+.labs-cards:hover {
+  border-color: var(--border-hover-strong);
+  box-shadow: var(--shadow-green-md);
+}
+
+/* =========================================================
+   COMPONENTS — CHIPS (SKILLS / TAGS)
+========================================================= */
+
+.skill-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  transition: all 200ms ease;
+  cursor: default;
+}
+
+.skill-chip:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  transform: translateY(-2px);
 }

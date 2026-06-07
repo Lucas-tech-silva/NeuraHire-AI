@@ -91,7 +91,6 @@
 
 ::-webkit-scrollbar-thumb {
   background: var(--glass-2);
-  border-radius: 999px;
   border: 2px solid var(--bg-secondary);
   transition: background 0.2s ease;
 }
