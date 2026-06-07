@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+/* =========================================================
+   DESIGN SYSTEM — NEURAHIRE AI 
+========================================================= */
+
+:root {
+  /* BACKGROUNDS / SURFACES */
+  --bg-primary: #111113;
+  --bg-secondary: #131316;
+  --bg-tertiary: #34d399;
+  --bg-cta: #10b981;
+  --bg-card: #1e1e22;
+  --bg-span-tools: #42434a;
+
+  /* BUTTONS */
+  --bg-button: #059669;
+  --cta-button: #34d399;
+  --text-button: #b8b9c0;
+
+  /* TEXT */
+  --text-primary: #ffffff;
+  --text-secondary: #93949e;
+  --text-subtitle: #757682;
+  --text-tertiary: #34d399;
+
+  --label-text: #5e5f69;
+  --tools-description: #646570;
+
+  /* BORDERS */
+  --border-default: #2e2e34;
+  --border-soft: rgba(255, 255, 255, 0.05);
+
+  --border-button: #2e2e34;
+  --border-cta: #10b981;
+  --border-green-md: rgba(16, 185, 129, 0.18);
+
+  --hover-border: rgba(16, 185, 129, 0.3);
+  --border-hover-strong: rgba(16, 185, 129, 0.6);
+
+  /* BRAND */
+  --color-accent: #10b981;
+  --color-highlight: #6ee7b7;
+  --color-status: #10b981;
+  --tools-subtitle: #10b981;
+
+  /* ICONS */
+  --icon-sidebar: #757682;
+  --icon-bg: #10b981;
+  --icon-border: #10b981;
+
+  --badge-bg: 16 185 129;
+  --color-icon-tool: 16 185 129;
+  --icon-tools-border: 16 185 129;
+
+  /* EFFECTS */
+  --hover-white-soft: rgba(255, 255, 255, 0.08);
+
+  --shadow-green-soft: 0 0 0 1px rgba(16, 185, 129, 0.12);
+  --shadow-green-md: 0 0 18px rgba(16, 185, 129, 0.18);
+  --shadow-green-lg: 0 0 25px rgba(16, 185, 129, 0.12);
+
+  /* GLASS */
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-2: rgba(255, 255, 255, 0.08);
+
+  --glass-green: rgba(16, 185, 129, 0.08);
+  --glass-green-2: rgba(16, 185, 129, 0.15);
+
+  /* =========================================================
+     LEGEND / STATUS DOTS (ROADMAP / UI STATUS)
+  ========================================================= */
+
+  --status-done: #34d399;
+  --status-active: #f59e0b;
+  --status-pending: #a1a1aa;
+  --status-future: #2c87f7;
+}
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--glass-2);
+  border-radius: 999px;
+  border: 2px solid var(--bg-secondary);
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--glass-green-2);
+}

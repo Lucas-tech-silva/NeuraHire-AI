@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="pt-br" class="scroll-smooth antialiased scrollbar-gutter-stable">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>NeuraHire AI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/components.css" />
+  </head>
+
+  <body class="font-[Inter] bg-(--bg-primary) text-(--text-primary)">
+    <!-- OVERLAY -->
+    <div
+      id="overlay"
+      class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+    ></div>
+
+    <!-- SIDEBAR -->
+    <aside
+      id="sidebar"
+      class="fixed left-0 top-0 z-50 h-screen w-[16.3rem] flex flex-col bg-(--bg-secondary) border-r border-(--border-default) -translate-x-full lg:translate-x-0 transition-transform duration-300"
+    >
+      <!-- CLOSE (MOBILE) -->
+      <button
+        id="menu-close"
+        class="lg:hidden absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-md border border-(--border-default) bg-(--bg-card) hover:bg-white/5"
+      >
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <!-- Sidebar Header -->
+      <div class="border-b border-r border-(--border-default) p-5">
+        <a class="flex items-center gap-3">
+          <img
+            src="./assets/NeuraHire-AI-Logo.png"
+            alt="Logo da NeuraHire"
+            class="h-9"
+          />
+
+          <div>
+            <span class="text-sm font-semibold tracking-[-0.35px]">
+              NeuraHire
+            </span>
+            <p
+              class="text-[0.6rem] text-(--text-subtitle) font-medium tracking-wider uppercase"
+            >
+              AI Platform
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Sidebar Navigation -->
+      <nav class="m-2 notranslate">
+        <div>
+          <p class="sidebar-label">Navigation</p>
+
+          <ul>
+            <li>
+              <a
+                class="sidebar-link page-link active"
+                data-page="home"
+                data-title="NeuraHire AI"
+                data-description="Plataforma de Inteligência Artificial para Recrutamento"
+              >
+                <i data-lucide="house" class="sidebar-icon"></i>
+                Home
+              </a>
+            </li>
+
+            <li>
+              <a
+                class="sidebar-link page-link"
+                data-page="workspace"
+                data-title="AI Workspace"
+                data-description="Converse com a IA sobre currículo, carreira e entrevistas."
+              >
+                <i data-lucide="layout-dashboard" class="sidebar-icon"></i>
+                AI Workspace
+              </a>
+            </li>
+
+            <li>
+              <a
+                class="sidebar-link page-link"
+                data-page="tools"
+                data-title=" AI Tools"
+                data-description="Catálogo completo de ferramentas inteligentes"
+              >
+                <i data-lucide="bot" class="sidebar-icon"></i>
+                AI Tools
+              </a>
+            </li>
+
+            <li>
+              <a
+                class="sidebar-link page-link"
+                data-page="insights"
+                data-title=" Insights"
+                data-description="Análises e métricas da plataforma"
+              >
+                <i data-lucide="square-kanban" class="sidebar-icon"></i>
+                Insights
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="sidebar-label">Preferences</p>
+
+          <ul>
+            <li>
+              <a
+                class="sidebar-link page-link"
+                data-page="settings"
+                data-title="Settings"
+                data-description="Personalize sua experiência na plataforma"
+              >
+                <i data-lucide="settings" class="sidebar-icon"></i>
+                Settings
+              </a>
+            </li>
+
+            <li>
+              <a
+                class="sidebar-link page-link"
+                data-page="labs"
+                data-title="Neura Labs"
+                data-description="Experimente recursos experimentais, protótipos e tecnologias avançadas de IA."
+              >
+                <i data-lucide="flask-conical" class="sidebar-icon"></i>
+                Neura Labs
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="sidebar-label">Conexão</p>
+
+          <ul>
+            <li>
+              <a
+                class="sidebar-link page-link"
+                data-page="contact"
+                data-title="Contact Workspace"
+                data-description="Central de comunicação, suporte e conexões profissionais da plataforma."
+              >
+                <i data-lucide="contact-round" class="sidebar-icon"></i>
+                Contact Workspace
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- AI STATUS -->
+      <div class="mt-auto w-[260px] border-t border-(--border-default) p-4">
+        <div
+          class="flex items-center gap-3 bg-(--bg-card) border border-transparent px-3 py-2.5 rounded-md transition-all duration-200 hover:bg-white/7 hover:border-white/7"
+        >
+          <span
+            class="w-2 h-2 rounded-full bg-(--color-status) animate-pulse shadow-[0_0_8px_var(--color-status)] inline-block"
+            aria-hidden="true"
+          ></span>
+          <div class="flex flex-col leading-3.5">
+            <p class="text-xs font-semibold notranslate">Active AI</p>
+            <span class="text-[10px] text-(--text-subtitle)">
+              Processing ready
+            </span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- HEADER -->
+    <header
+      class="fixed top-0 left-0 lg:left-[16.3rem] right-0 h-16 bg-(--bg-secondary)/80 backdrop-blur-sm border-b border-(--border-default) z-10"
+    >
+      <nav class="flex items-center justify-between h-full px-6">
+        <div class="flex items-center gap-4">
+          <!-- MENU BUTTON -->
+          <button
+            id="menu-toggle"
+            class="lg:hidden flex items-center justify-center w-9 h-9 rounded-lg border border-(--border-default) bg-(--bg-card) hover:bg-white/5 transition-all duration-200"
+          >
+            <i
+              data-lucide="text-align-end"
+              class="text-(--text-secondary) stroke-3 h-"
+            ></i>
+          </button>
+
+          <div class="flex flex-col">
+            <div id="header-title" class="text-sm md:text-base font-semibold">
+              NeuraHire AI
+            </div>
+            <p id="header-description" class="text-xs text-(--text-subtitle)">
+              Plataforma de Inteligência Artificial para Recrutamento
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div
+            class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-(--bg-card)"
+          >
+            <span
+              class="w-2 h-2 rounded-full bg-(--color-status) animate-pulse"
+            ></span>
+            <time class="ext-sm">12:30</time>
+          </div>
+
+          <div
+            class="flex items-center justify-center w-8 h-8 bg-(--icon-bg)/10 border border-(--icon-border)/20 rounded-full"
+          >
+            <i
+              data-lucide="sparkles"
+              aria-hidden="true"
+              class="h-3 text-(--text-tertiary)"
+            ></i>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="flex flex-col min-h-screen lg:ml-[16.3rem]">
+      <!-- Main Content -->
+      <main class="flex-1 pt-18 px-4 sm:px-6">
+        <!-- HOME -->
+        <section id="home" class="page">
+          <!-- Hero Section -->
+          <section
+            class="w-full flex flex-col items-center text-center py-20 md:py-33 px-9 gap-6 border-b border-(--border-default)"
+          >
+            <!-- Status Label -->
+            <div
+              class="flex items-center justify-center gap-2 px-4 py-2 w-46 h-8.5 bg-(--icon-bg)/10 border border-(--icon-border)/20 rounded-full"
+            >
+              <span
+                class="w-2 h-2 rounded-full bg-(--color-status) animate-pulse shadow-[0_0_8px_var(--color-status)] inline-block"
+                aria-hidden="true"
+              ></span>
+
+              <p class="text-(--text-tertiary) text-xs font-semibold">
+                IA em Produção · v1.0
+              </p>
+            </div>
+
+            <!-- Hero Content -->
+            <div class="flex flex-col gap-5 items-center max-w-3xl">
+              <h1 class="text-3xl md:text-5xl font-bold">
+                Recrutamento potencializado por
+                <span class="text-(--text-tertiary)">
+                  Inteligência Artificial
+                </span>
+              </h1>
+
+              <p
+                class="max-w-2xl text-sm sm:text-base font-medium text-(--text-secondary)"
+              >
+                A NeuraHire AI combina análise avançada de currículos, simulação
+                de entrevistas e avaliação preditiva de candidatos em uma
+                plataforma única e poderosa.
+              </p>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div
+              class="flex flex-col md:flex-row items-center justify-center gap-3 w-full"
+            >
+              <a
+                data-page="workspace"
+                class="page-link flex items-center whitespace-nowrap bg-(--bg-button) px-4 py-2.5 cursor-pointer rounded-lg hover:brightness-125 transition-all duration-200"
+              >
+                <i
+                  data-lucide="sparkles"
+                  aria-hidden="true"
+                  class="h-3 text-(--text-primary)"
+                ></i>
+                Começar com IA
+              </a>
+
+              <a
+                data-page="labs"
+                class="page-link flex items-center whitespace-nowrap text-(--text-button) px-4 py-2.5 cursor-pointer bg-(--bg-card) border border-(--border-button) rounded-lg hover:text-(--text-primary) hover:border-(--hover-border) transition-all duration-200"
+              >
+                <i data-lucide="lightbulb" aria-hidden="true" class="h-3.5"></i>
+                Conhecer a Visão
+              </a>
+            </div>
+          </section>
+
+          <!-- Stats Section -->
+          <section class="py-8 border-b border-(--border-default)">
+            <!-- Stats Card -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+              <div>
+                <h2 class="text-2xl sm:text-3xl font-bold notranslate">12K+</h2>
+                <p class="text-xs text-(--text-subtitle)">
+                  Análises Realizadas
+                </p>
+              </div>
+
+              <!-- Stats Card -->
+              <div>
+                <h2 class="text-2xl sm:text-3xl font-bold">94%</h2>
+                <p class="text-xs text-(--text-subtitle)">Taxa de Precisão</p>
+              </div>
+
+              <!-- Stats Card -->
+              <div>
+                <h2 class="text-2xl sm:text-3xl font-bold notranslate">3.2s</h2>
+                <p class="text-xs text-(--text-subtitle)">
+                  Tempo Médio de Resposta
+                </p>
+              </div>
+
+              <!-- Stats Card -->
+              <div>
+                <h2 class="text-2xl sm:text-3xl font-bold">8</h2>
+                <p class="text-xs text-(--text-subtitle)">Ferramentas de IA</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- AI Tools Section -->
+          <section>
+            <!-- Section Header -->
+            <div class="flex flex-col items-center gap-1.5 m-8.5">
+              <h2 class="text-xl font-bold text-center">
+                Ferramentas de IA Especializadas
+              </h2>
+
+              <p class="text-sm text-(--text-subtitle) max-w-xl text-center">
+                Duas experiências completas: uma para quem busca oportunidades e
+                outra para quem contrata talentos.
+              </p>
+            </div>
+
+            <!-- Tools Grid -->
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-4"
+            >
+              <!-- Card 1 -->
+              <div class="tools-grid__card">
+                <div class="tools-grid__header">
+                  <div class="tools-grid__icon">
+                    <i data-lucide="scroll-text" aria-hidden="true"></i>
+                  </div>
+
+                  <div class="tools-grid__info">
+                    <h3 class="tools-grid__title">Análise de Currículo</h3>
+                    <span class="tools-grid__role">Candidato</span>
+                  </div>
+                </div>
+
+                <p class="tools-grid__description">
+                  IA analisa estrutura, conteúdo, palavras-chave e
+                  compatibilidade com ATS em segundos.
+                </p>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="tools-grid__card">
+                <div class="tools-grid__header">
+                  <div class="tools-grid__icon">
+                    <i data-lucide="wand-sparkles" aria-hidden="true"></i>
+                  </div>
+
+                  <div class="tools-grid__info">
+                    <h3 class="tools-grid__title">Otimização Inteligente</h3>
+                    <span class="tools-grid__role">Candidato</span>
+                  </div>
+                </div>
+
+                <p class="tools-grid__description">
+                  Receba sugestões precisas para melhorar seu currículo com base
+                  no mercado atual.
+                </p>
+              </div>
+
+              <!-- Card 3 -->
+              <div class="tools-grid__card">
+                <div class="tools-grid__header">
+                  <div class="tools-grid__icon">
+                    <i data-lucide="audio-lines" aria-hidden="true"></i>
+                  </div>
+
+                  <div class="tools-grid__info">
+                    <h3 class="tools-grid__title">Simulação de Entrevista</h3>
+                    <span class="tools-grid__role">Candidato</span>
+                  </div>
+                </div>
+
+                <p class="tools-grid__description">
+                  Pratique com perguntas geradas por IA e receba feedback
+                  detalhado de performance.
+                </p>
+              </div>
+
+              <!-- Card 4 -->
+              <div class="tools-grid__card">
+                <div class="tools-grid__header">
+                  <div class="tools-grid__icon">
+                    <i data-lucide="user-round-search" aria-hidden="true"></i>
+                  </div>
+
+                  <div class="tools-grid__info">
+                    <h3 class="tools-grid__title">Avaliação de Candidatos</h3>
+                    <span class="tools-grid__role">Recrutador</span>
+                  </div>
+                </div>
+
+                <p class="tools-grid__description">
+                  Score completo de compatibilidade com análise técnica,
+                  cultural e de experiência.
+                </p>
+              </div>
+
+              <!-- Card 5 -->
+              <div class="tools-grid__card">
+                <div class="tools-grid__header">
+                  <div class="tools-grid__icon">
+                    <i data-lucide="users" aria-hidden="true"></i>
+                  </div>
+
+                  <div class="tools-grid__info">
+                    <h3 class="tools-grid__title">Comparação Inteligente</h3>
+                    <span class="tools-grid__role">Recrutador</span>
+                  </div>
+                </div>
+
+                <p class="tools-grid__description">
+                  Compare múltiplos candidatos com ranking automatizado e
+                  insights comparativos.
+                </p>
+              </div>
+
+              <!-- Card 6 -->
+              <div class="tools-grid__card">
+                <div class="tools-grid__header">
+                  <div class="tools-grid__icon">
+                    <i data-lucide="messages-square" aria-hidden="true"></i>
+                  </div>
+
+                  <div class="tools-grid__info">
+                    <h3 class="tools-grid__title">Geração de Perguntas</h3>
+                    <span class="tools-grid__role">Recrutador</span>
+                  </div>
+                </div>
+
+                <p class="tools-grid__description">
+                  Perguntas de entrevista personalizadas por vaga, nível e
+                  competências desejadas.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Platform Modes -->
+          <section>
+            <div class="plataform-grid">
+              <!-- Candidate Mode -->
+              <div class="plataform-mode">
+                <!-- Card Header -->
+                <div class="plataform-header">
+                  <div class="flex items-center gap-2.5">
+                    <div
+                      class="flex items-center justify-center w-8 h-8 bg-(--bg-tertiary)/10 rounded-lg"
+                    >
+                      <i
+                        data-lucide="user"
+                        aria-hidden="true"
+                        class="h-4 text-(--text-tertiary)"
+                      ></i>
+                    </div>
+
+                    <h3 class="plataform-title">Modo Candidato</h3>
+                  </div>
+                </div>
+
+                <!-- Card Description -->
+                <p class="plataform-description">
+                  Ferramentas de IA para analisar, melhorar e otimizar seu
+                  currículo. Simule entrevistas e receba feedback profissional
+                  detalhado.
+                </p>
+
+                <!-- Features -->
+                <ul class="plataform-list">
+                  <li class="plataform-item">
+                    <i
+                      data-lucide="check"
+                      aria-hidden="true"
+                      class="plataform-icon"
+                    ></i>
+
+                    <p>Análise de currículo com IA</p>
+                  </li>
+
+                  <li class="plataform-item">
+                    <i
+                      data-lucide="check"
+                      aria-hidden="true"
+                      class="plataform-icon"
+                    ></i>
+
+                    <p>Sugestões de otimização</p>
+                  </li>
+
+                  <li class="plataform-item">
+                    <i
+                      data-lucide="check"
+                      aria-hidden="true"
+                      class="plataform-icon"
+                    ></i>
+
+                    <p>Simulação de entrevistas</p>
+                  </li>
+
+                  <li class="plataform-item">
+                    <i
+                      data-lucide="check"
+                      aria-hidden="true"
+                      class="plataform-icon"
+                    ></i>
+
+                    <p>Análise de perfil profissional</p>
+                  </li>
+                </ul>
+
+                <!-- Card Button -->
+                <a class="page-link plataform-button" data-page="tools">
+                  Explorar Modo Candidato
+
+                  <i
+                    data-lucide="arrow-right"
+                    aria-hidden="true"
+                    class="h-3.5"
+                  ></i>
+                </a>
+              </div>
+
+              <!-- Recruiter Mode -->
+              <div class="plataform-mode">
+                <!-- Card Header -->
+                <div class="plataform-header">
+                  <div class="flex items-center gap-2.5">
+                    <div
+                      class="flex items-center justify-center w-8 h-8 bg-(--bg-tertiary)/10 rounded-lg"
+                    >
+                      <i
+                        data-lucide="briefcase-business"
+                        aria-hidden="true"
+                        class="h-4 text-(--text-tertiary)"
+                      ></i>
+                    </div>
+
+                    <h3 class="plataform-title">Modo Recrutador</h3>
+                  </div>
+                </div>
+
+                <!-- Card Description -->
+                <p class="plataform-description">
+                  Avalie, compare e analise candidatos com precisão. Gere
+                  perguntas personalizadas e obtenha scores de compatibilidade.
+                </p>
+
+                <!-- Features -->
+                <ul class="plataform-list">
+                  <li class="plataform-item">
+                    <i
+                      data-lucide="check"
+                      aria-hidden="true"
+                      class="plataform-icon"
+                    ></i>
+
+                    <p>Avaliação completa de candidatos</p>
+                  </li>
+
+                  <li class="plataform-item">
+                    <i
+                      data-lucide="check"
+                      aria-hidden="true"
+                      class="plataform-icon"
+                    ></i>
+
+                    <p>Comparação lado a lado</p>
+                  </li>
+
+                  <li class="plataform-item">
+                    <i
+                      data-lucide="check"
+                      aria-hidden="true"
+                      class="plataform-icon"
+                    ></i>
+
+                    <p>Geração de perguntas de entrevista</p>
+                  </li>
+
+                  <li class="plataform-item">
+                    <i
+                      data-lucide="check"
+                      aria-hidden="true"
+                      class="plataform-icon"
+                    ></i>
+
+                    <p>Análise de compatibilidade com vaga</p>
+                  </li>
+                </ul>
+
+                <!-- Card Button -->
+                <a class="page-link plataform-button" data-page="tools">
+                  Explorar Modo Recrutador
+
+                  <i
+                    data-lucide="arrow-right"
+                    aria-hidden="true"
+                    class="h-3.5"
+                  ></i>
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <!-- CTA Section -->
+          <section
+            class="bg-(--bg-cta)/5 border border-(--border-cta)/15 rounded-xl my-8"
+          >
+            <div
+              class="flex flex-col items-center justify-center text-center gap-3 py-6 px-4"
+            >
+              <!-- Icon -->
+              <div
+                class="flex items-center justify-center w-11 h-11 mb-2 bg-(--icon-bg)/10 border border-(--icon-border)/20 rounded-full"
+              >
+                <i
+                  data-lucide="sparkles"
+                  aria-hidden="true"
+                  class="h-4 text-(--text-tertiary)"
+                ></i>
+              </div>
+
+              <!-- Title -->
+              <h2 class="text-xl md:text-2xl font-bold">
+                Pronto para transformar seu recrutamento?
+              </h2>
+
+              <!-- Description -->
+              <p class="text-sm text-(--text-secondary) mb-4 md:mb-6 max-w-lg">
+                Experimente a IA da NeuraHire gratuitamente. analise currículos,
+                simule entrevistas e tome decisões de RH com inteligência
+                artificial de ponta.
+              </p>
+
+              <!-- CTA Button -->
+              <a
+                data-page="workspace"
+                class="page-link inline-flex items-center justify-center gap-1 cursor-pointer bg-(--bg-button) rounded-lg py-2 px-6 text-sm md:text-base whitespace-nowrap hover:brightness-125 transition-all duration-200"
+              >
+                <i data-lucide="rocket" aria-hidden="true" class="h-4.5"></i>
+
+                Acessar AI Workspace
+              </a>
+            </div>
+          </section>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer
+        class="flex flex-wrap flex-col md:flex-row items-center justify-center gap-6 h-auto py-8 mx-6 border-t border-(--border-default) text-sm text-(--text-subtitle)"
+        id="footer"
+      >
+        <button
+          data-page="tools"
+          class="page-link flex items-center gap-2 notranslate whitespace-nowrap cursor-pointer transition duration-200 hover:brightness-125 active:scale-[0.95] focus:outline-none"
+        >
+          <i
+            data-lucide="brain-circuit"
+            aria-hidden="true"
+            class="text-(--text-tertiary) h-3"
+          ></i>
+
+          <p class="text-sm">Advanced AI Tools</p>
+        </button>
+
+        <button
+          type="button"
+          data-page="workspace"
+          class="page-link flex items-center gap-2 whitespace-nowrap cursor-pointer transition duration-200 hover:brightness-125 active:scale-[0.95] focus:outline-none"
+        >
+          <i
+            data-lucide="globe"
+            aria-hidden="true"
+            class="text-(--text-tertiary) h-3"
+          ></i>
+
+          <p class="text-sm">AI Workspace</p>
+        </button>
+
+        <button
+          type="button"
+          data-page="labs"
+          class="page-link flex items-center whitespace-nowrap gap-2 cursor-pointer transition duration-200 hover:brightness-125 active:scale-[0.95] focus:outline-none"
+        >
+          <i
+            data-lucide="refresh-cw"
+            aria-hidden="true"
+            class="text-(--text-tertiary) h-3"
+          ></i>
+
+          <p class="text-sm">Constant Updates</p>
+        </button>
+
+        <button
+          type="button"
+          data-page="contact"
+          class="page-link flex items-center whitespace-nowrap gap-2 cursor-pointer transition duration-200 hover:brightness-125 active:scale-[0.95] focus:outline-none"
+        >
+          <i
+            data-lucide="headset"
+            aria-hidden="true"
+            class="text-(--text-tertiary) h-3"
+          ></i>
+
+          <p class="text-sm">Dedicated Support</p>
+        </button>
+      </footer>
+    </div>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+
+    <!-- Initialize Icons -->
+    <script defer>
+      window.addEventListener("DOMContentLoaded", () => {
+        lucide.createIcons();
+      });
+    </script>
+  </body>
+</html>
