@@ -3,11 +3,6 @@
 # É gerado automaticamente com "npm install" e NÃO deve ir para o Git
 node_modules/
 
-# 🎨 Arquivo gerado pelo Tailwind CSS
-# Esse arquivo é compilado automaticamente pelo CLI do Tailwind
-# Ele pode ser recriado a qualquer momento, então não precisa versionar
-frontend/css/output.css
-
 # 🪵 Logs do sistema e debug
 # Arquivos criados automaticamente pelo Node ou ferramentas
 # Não são importantes para o funcionamento do projeto
