@@ -13,7 +13,7 @@
       rel="stylesheet"
     />
 
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="css/output.css" />
 
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/components.css" />
@@ -23,48 +23,44 @@
     <!-- OVERLAY -->
     <div
       id="overlay"
-      class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+      class="u-hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
     ></div>
 
     <!-- ===================================== -->
     <!-- SIDEBAR -->
     <!-- ===================================== -->
     <aside
-      id="sidebar"
-      class="fixed left-0 top-0 z-50 h-screen w-[16.3rem] flex flex-col bg-(--bg-secondary) border-r border-(--border-default) -translate-x-full lg:translate-x-0 transition-transform duration-300"
+      class="sidebar fixed left-0 top-0 z-50 h-screen w-[16.3rem] flex flex-col bg-(--bg-secondary) border-r border-(--border-default) -translate-x-full lg:translate-x-0 transition-transform duration-300"
     >
       <!-- CLOSE (MOBILE) -->
       <button
-        id="menu-close"
-        class="lg:hidden absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-md border border-(--border-default) bg-(--bg-card) hover:bg-white/5"
+        class="menu-close lg:hidden absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-md border border-(--border-default) bg-(--bg-card) hover:bg-white/5"
       >
         <i data-lucide="x" class="w-4 h-4"></i>
       </button>
 
       <!-- Sidebar Header -->
-      <div class="border-b border-r border-(--border-default) p-5">
-        <a
-          data-page="home"
-          class="page-link flex items-center gap-3 cursor-pointer"
-        >
-          <img
-            src="./assets/NeuraHire-AI-Logo.png"
-            alt="Logo da NeuraHire"
-            class="h-9"
-          />
+      <button
+        data-page="home"
+        class="nav-link flex items-center gap-3 border-b border-r border-(--border-default) p-5 cursor-pointer focus:outline-none focus-visible:shadow-[var(--shadow-green-soft),0_0_10px_var(--glass-green-2)]"
+      >
+        <img
+          src="./assets/NeuraHire-AI-Logo.png"
+          alt="Logo da NeuraHire"
+          class="h-9"
+        />
 
-          <div>
-            <span class="text-sm font-semibold tracking-[-0.35px]">
-              NeuraHire
-            </span>
-            <p
-              class="text-[0.6rem] text-(--text-subtitle) font-medium tracking-wider uppercase"
-            >
-              AI Platform
-            </p>
-          </div>
-        </a>
-      </div>
+        <div>
+          <span class="text-sm font-semibold tracking-[-0.35px]">
+            NeuraHire
+          </span>
+          <p
+            class="text-[0.6rem] text-(--text-subtitle) font-medium tracking-wider uppercase"
+          >
+            AI Platform
+          </p>
+        </div>
+      </button>
 
       <!-- Sidebar Navigation -->
       <nav class="m-2 notranslate">
@@ -73,51 +69,51 @@
 
           <ul>
             <li>
-              <a
-                class="sidebar-link page-link active"
+              <button
+                class="sidebar-link nav-link active"
                 data-page="home"
                 data-title="NeuraHire AI"
                 data-description="Plataforma de Inteligência Artificial para Recrutamento"
               >
                 <i data-lucide="house" class="sidebar-icon"></i>
                 Home
-              </a>
+              </button>
             </li>
 
             <li>
-              <a
-                class="sidebar-link page-link"
+              <button
+                class="sidebar-link nav-link"
                 data-page="workspace"
                 data-title="AI Workspace"
                 data-description="Converse com a IA sobre currículo, carreira e entrevistas."
               >
                 <i data-lucide="layout-dashboard" class="sidebar-icon"></i>
                 AI Workspace
-              </a>
+              </button>
             </li>
 
             <li>
-              <a
-                class="sidebar-link page-link"
+              <button
+                class="sidebar-link nav-link"
                 data-page="tools"
-                data-title=" AI Tools"
+                data-title="AI Tools"
                 data-description="Catálogo completo de ferramentas inteligentes"
               >
                 <i data-lucide="bot" class="sidebar-icon"></i>
                 AI Tools
-              </a>
+              </button>
             </li>
 
             <li>
-              <a
-                class="sidebar-link page-link"
+              <button
+                class="sidebar-link nav-link"
                 data-page="insights"
-                data-title=" Insights"
+                data-title="Insights"
                 data-description="Análises e métricas da plataforma"
               >
                 <i data-lucide="square-kanban" class="sidebar-icon"></i>
                 Insights
-              </a>
+              </button>
             </li>
           </ul>
         </div>
@@ -127,27 +123,27 @@
 
           <ul>
             <li>
-              <a
-                class="sidebar-link page-link"
+              <button
+                class="sidebar-link nav-link"
                 data-page="settings"
                 data-title="Settings"
                 data-description="Personalize sua experiência na plataforma"
               >
                 <i data-lucide="settings" class="sidebar-icon"></i>
                 Settings
-              </a>
+              </button>
             </li>
 
             <li>
-              <a
-                class="sidebar-link page-link"
+              <button
+                class="sidebar-link nav-link"
                 data-page="labs"
                 data-title="Neura Labs"
                 data-description="Visão e roadmap do NeuraHire AI."
               >
                 <i data-lucide="flask-conical" class="sidebar-icon"></i>
                 Neura Labs
-              </a>
+              </button>
             </li>
           </ul>
         </div>
@@ -157,22 +153,22 @@
 
           <ul>
             <li>
-              <a
-                class="sidebar-link page-link"
+              <button
+                class="sidebar-link nav-link"
                 data-page="contact"
                 data-title="Contact Workspace"
                 data-description="Central de suporte, comunicação e conexões da plataforma."
               >
                 <i data-lucide="contact-round" class="sidebar-icon"></i>
                 Contact Workspace
-              </a>
+              </button>
             </li>
           </ul>
         </div>
       </nav>
 
       <!-- AI STATUS -->
-      <div class="mt-auto w-[260px] border-t border-(--border-default) p-4">
+      <div class="mt-auto border-t border-(--border-default) p-4">
         <div
           class="flex items-center gap-3 bg-(--bg-card) border border-transparent px-3 py-2.5 rounded-md transition-all duration-200 hover:bg-white/7 hover:border-white/7"
         >
@@ -200,8 +196,7 @@
         <div class="flex items-center gap-4">
           <!-- MENU BUTTON -->
           <button
-            id="menu-toggle"
-            class="lg:hidden flex items-center justify-center w-9 h-9 rounded-lg border border-(--border-default) bg-(--bg-card) hover:bg-white/5 transition-all duration-200"
+            class="menu-toggle lg:hidden flex items-center justify-center w-9 h-9 rounded-lg border border-(--border-default) bg-(--bg-card) hover:bg-white/5 transition-all duration-200"
           >
             <i
               data-lucide="text-align-end"
@@ -209,11 +204,14 @@
             ></i>
           </button>
 
-          <div class="flex flex-col gap-0.">
-            <div id="header-title" class="text-sm md:text-base font-semibold">
+          <div class="flex flex-col gap-0.5">
+            <div id="header-title" class="text-base font-semibold">
               NeuraHire AI
             </div>
-            <p id="header-description" class="text-xs text-(--text-subtitle)">
+            <p
+              id="header-description"
+              class="text-xs text-(--text-subtitle) hidden sm:flex"
+            >
               Plataforma de Inteligência Artificial para Recrutamento
             </p>
           </div>
@@ -226,7 +224,7 @@
             <span
               class="w-2 h-2 rounded-full bg-(--color-status) animate-pulse"
             ></span>
-            <time class="text-sm">12:30</time>
+            <time class="clock text-sm">12:30</time>
           </div>
 
           <div
@@ -248,7 +246,7 @@
         <!-- ===================================== -->
         <!-- HOME -->
         <!-- ===================================== -->
-        <section id="home" class="page">
+        <section id="home" class="page active">
           <!-- Hero Section -->
           <section
             class="w-full flex flex-col items-center text-center py-20 md:py-33 px-9 gap-6 border-b border-(--border-default)"
@@ -289,9 +287,9 @@
             <div
               class="flex flex-col md:flex-row items-center justify-center gap-3 w-full"
             >
-              <a
+              <button
                 data-page="workspace"
-                class="page-link flex items-center whitespace-nowrap bg-(--bg-button) px-4 py-2.5 cursor-pointer rounded-lg hover:brightness-125 transition-all duration-200"
+                class="nav-link flex items-center whitespace-nowrap bg-(--bg-button) px-4 py-2.5 cursor-pointer rounded-lg hover:opacity-80 transition-all duration-200"
               >
                 <i
                   data-lucide="sparkles"
@@ -299,15 +297,15 @@
                   class="h-3 text-(--text-primary)"
                 ></i>
                 Começar com IA
-              </a>
+              </button>
 
-              <a
+              <button
                 data-page="labs"
-                class="page-link flex items-center whitespace-nowrap text-(--text-button) px-4 py-2.5 cursor-pointer bg-(--bg-card) border border-(--border-button) rounded-lg hover:text-(--text-primary) hover:border-(--hover-border) transition-all duration-200"
+                class="nav-link flex items-center whitespace-nowrap text-(--text-button) px-4 py-2.5 cursor-pointer bg-(--bg-card) border border-(--border-button) rounded-lg hover:text-(--text-primary) hover:border-(--hover-border) focus:outline-none focus-visible:shadow-[var(--shadow-green-soft),0_0_10px_var(--glass-green-2)] transition-all duration-200"
               >
                 <i data-lucide="lightbulb" aria-hidden="true" class="h-3.5"></i>
                 Conhecer a Visão
-              </a>
+              </button>
             </div>
           </section>
 
@@ -317,7 +315,7 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
               <div>
                 <h2 class="text-2xl sm:text-3xl font-bold notranslate">12K+</h2>
-                <p class="text-xs text-(--text-subtitle)">
+                <p class="text-xs sm:text-sm text-(--text-subtitle)">
                   Análises Realizadas
                 </p>
               </div>
@@ -365,7 +363,7 @@
               class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-4"
             >
               <!-- Card 1 -->
-              <div class="tools-grid__card">
+              <div class="card-base">
                 <div class="tools-grid__header">
                   <div class="tools-grid__icon">
                     <i data-lucide="scroll-text" aria-hidden="true"></i>
@@ -384,7 +382,7 @@
               </div>
 
               <!-- Card 2 -->
-              <div class="tools-grid__card">
+              <div class="card-base">
                 <div class="tools-grid__header">
                   <div class="tools-grid__icon">
                     <i data-lucide="wand-sparkles" aria-hidden="true"></i>
@@ -403,7 +401,7 @@
               </div>
 
               <!-- Card 3 -->
-              <div class="tools-grid__card">
+              <div class="card-base">
                 <div class="tools-grid__header">
                   <div class="tools-grid__icon">
                     <i data-lucide="audio-lines" aria-hidden="true"></i>
@@ -422,7 +420,7 @@
               </div>
 
               <!-- Card 4 -->
-              <div class="tools-grid__card">
+              <div class="card-base">
                 <div class="tools-grid__header">
                   <div class="tools-grid__icon">
                     <i data-lucide="user-round-search" aria-hidden="true"></i>
@@ -441,7 +439,7 @@
               </div>
 
               <!-- Card 5 -->
-              <div class="tools-grid__card">
+              <div class="card-base">
                 <div class="tools-grid__header">
                   <div class="tools-grid__icon">
                     <i data-lucide="users" aria-hidden="true"></i>
@@ -460,7 +458,7 @@
               </div>
 
               <!-- Card 6 -->
-              <div class="tools-grid__card">
+              <div class="card-base">
                 <div class="tools-grid__header">
                   <div class="tools-grid__icon">
                     <i data-lucide="messages-square" aria-hidden="true"></i>
@@ -555,7 +553,7 @@
                 </ul>
 
                 <!-- Card Button -->
-                <a class="page-link plataform-button" data-page="tools">
+                <button class="nav-link plataform-button" data-page="tools">
                   Explorar Modo Candidato
 
                   <i
@@ -563,7 +561,7 @@
                     aria-hidden="true"
                     class="h-3.5"
                   ></i>
-                </a>
+                </button>
               </div>
 
               <!-- Recruiter Mode -->
@@ -587,8 +585,9 @@
 
                 <!-- Card Description -->
                 <p class="plataform-description">
-                  Avalie, compare e analise candidatos com precisão. Gere
-                  perguntas personalizadas e obtenha scores de compatibilidade.
+                  Avalie, compare e analise candidatos com precisão,
+                  identificando competências, experiências e aderência ao perfil
+                  da vaga.
                 </p>
 
                 <!-- Features -->
@@ -635,7 +634,7 @@
                 </ul>
 
                 <!-- Card Button -->
-                <a class="page-link plataform-button" data-page="tools">
+                <button class="nav-link plataform-button" data-page="tools">
                   Explorar Modo Recrutador
 
                   <i
@@ -643,7 +642,7 @@
                     aria-hidden="true"
                     class="h-3.5"
                   ></i>
-                </a>
+                </button>
               </div>
             </div>
           </section>
@@ -679,14 +678,13 @@
               </p>
 
               <!-- CTA Button -->
-              <a
+              <button
                 data-page="workspace"
-                class="page-link inline-flex items-center justify-center gap-1 cursor-pointer bg-(--bg-button) rounded-lg py-2 px-6 text-sm md:text-base whitespace-nowrap hover:brightness-125 transition-all duration-200"
+                class="nav-link inline-flex items-center justify-center gap-1 cursor-pointer bg-(--bg-button) rounded-lg py-2 px-6 text-sm md:text-base whitespace-nowrap hover:opacity-80 transition-all duration-200"
               >
                 <i data-lucide="rocket" aria-hidden="true" class="h-4.5"></i>
-
                 Acessar AI Workspace
-              </a>
+              </button>
             </div>
           </section>
         </section>
@@ -725,21 +723,21 @@
               class="hidden sm:flex gap-3 py-5 px-5 border-t border-(--border-soft)"
             >
               <button
-                class="quick-action flex items-center gap-2 rounded-2xl border border-(--border-default) bg-(--bg-card) px-4 py-3 cursor-pointer text-sm font-medium text-(--text-secondary) transition-all duration-200 hover:border-(--border-hover-strong) hover:bg-(--bg-primary) hover:text-(--text-primary)"
+                class="quick-action flex items-center gap-2 rounded-2xl border border-(--border-default) bg-(--bg-card) px-4 py-3 cursor-pointer text-sm font-medium text-(--text-secondary) transition-all duration-200 focus:outline-none focus-visible:shadow-[var(--shadow-green-soft),0_0_15px_var(--glass-green-2)] hover:border-(--border-hover-strong) hover:bg-(--bg-primary) hover:text-(--text-primary)"
               >
                 <i data-lucide="file-text" class="h-4 w-4"></i>
                 Resume Analysis
               </button>
 
               <button
-                class="quick-action flex items-center gap-2 rounded-2xl border border-(--border-default) bg-(--bg-card) px-4 py-3 cursor-pointer text-sm font-medium text-(--text-secondary) transition-all duration-200 hover:border-(--border-hover-strong) hover:bg-(--bg-primary) hover:text-(--text-primary)"
+                class="quick-action flex items-center gap-2 rounded-2xl border border-(--border-default) bg-(--bg-card) px-4 py-3 cursor-pointer text-sm font-medium text-(--text-secondary) transition-all duration-200 focus:outline-none focus-visible:shadow-[var(--shadow-green-soft),0_0_15px_var(--glass-green-2)] hover:border-(--border-hover-strong) hover:bg-(--bg-primary) hover:text-(--text-primary)"
               >
                 <i data-lucide="file-pen-line" class="h-4 w-4"></i>
                 Improve Resume
               </button>
 
               <button
-                class="quick-action flex items-center gap-2 rounded-2xl border border-(--border-default) bg-(--bg-card) px-4 py-3 cursor-pointer text-sm font-medium text-(--text-secondary) transition-all duration-200 hover:border-(--border-hover-strong) hover:bg-(--bg-primary) hover:text-(--text-primary)"
+                class="quick-action flex items-center gap-2 rounded-2xl border border-(--border-default) bg-(--bg-card) px-4 py-3 cursor-pointer text-sm font-medium text-(--text-secondary) transition-all duration-200 focus:outline-none focus-visible:shadow-[var(--shadow-green-soft),0_0_15px_var(--glass-green-2)] hover:border-(--border-hover-strong) hover:bg-(--bg-primary) hover:text-(--text-primary)"
               >
                 <i data-lucide="messages-square" class="h-4 w-4"></i>
                 Interview
@@ -757,7 +755,7 @@
                   id="chatInput"
                   rows="1"
                   placeholder="Digite sua mensagem..."
-                  class="w-full flex-1 min-h-12 sm:min-h-[52px] max-h-32 sm:max-h-40 py-2 sm:py-3 text-sm text-(--text-primary) placeholder:text-(--label-text) outline-none resize-none bg-transparent"
+                  class="w-full flex-1 min-h-12 sm:min-h-13 max-h-32 sm:max-h-40 py-2 sm:py-3 text-sm text-(--text-primary) placeholder:text-(--label-text) outline-none resize-none bg-transparent"
                 ></textarea>
 
                 <button
@@ -796,7 +794,7 @@
                   type="text"
                   placeholder="Buscar Ferramentas..."
                   class="tools-search__input"
-                />
+                >
               </div>
 
               <div class="tools-filters">
@@ -820,7 +818,7 @@
               <!-- CARD 1 -->
               <button
                 type="button"
-                class="tools-grid__card"
+                class="card-base tools-grid__card"
                 aria-label="Analisar Currículo"
               >
                 <div class="tools-grid__header">
@@ -854,7 +852,7 @@
               <!-- CARD 2 -->
               <button
                 type="button"
-                class="tools-grid__card"
+                class="card-base tools-grid__card"
                 aria-label="Melhorar Currículo"
               >
                 <div class="tools-grid__header">
@@ -888,7 +886,7 @@
               <!-- CARD 3 -->
               <button
                 type="button"
-                class="tools-grid__card"
+                class="card-base tools-grid__card"
                 aria-label="Simular Entrevista"
               >
                 <div class="tools-grid__header">
@@ -922,7 +920,7 @@
               <!-- CARD 4 -->
               <button
                 type="button"
-                class="tools-grid__card"
+                class="card-base tools-grid__card"
                 aria-label="Analisar Perfil Profissional"
               >
                 <div class="tools-grid__header">
@@ -958,7 +956,7 @@
               <!-- CARD 5 -->
               <button
                 type="button"
-                class="tools-grid__card"
+                class="card-base tools-grid__card"
                 aria-label="Avaliar Candidato"
               >
                 <div class="tools-grid__header">
@@ -979,7 +977,7 @@
                 </div>
 
                 <p class="tools-grid__description">
-                  Avaliação com score de compatibilidade e análise de skills.
+                  Avaliação de compatibilidade e análise de skills.
                 </p>
 
                 <div class="tools-grid__tags">
@@ -991,7 +989,7 @@
               <!-- CARD 6 -->
               <button
                 type="button"
-                class="tools-grid__card"
+                class="card-base tools-grid__card"
                 aria-label="Comparar Candidatos"
               >
                 <div class="tools-grid__header">
@@ -1024,7 +1022,7 @@
               <!-- CARD 7 -->
               <button
                 type="button"
-                class="tools-grid__card"
+                class="card-base tools-grid__card"
                 aria-label="Gerar Perguntas"
               >
                 <div class="tools-grid__header">
@@ -1057,7 +1055,7 @@
               <!-- CARD 8 -->
               <button
                 type="button"
-                class="tools-grid__card"
+                class="card-base tools-grid__card"
                 aria-label="Compatibilidade com Vaga"
               >
                 <div class="tools-grid__header">
@@ -1078,7 +1076,7 @@
                 </div>
 
                 <p class="tools-grid__description">
-                  Análise de compatibilidade entre candidato e vaga com score.
+                  Análise de compatibilidade entre candidato e vaga.
                 </p>
 
                 <div class="tools-grid__tags">
@@ -1088,6 +1086,8 @@
               </button>
             </div>
           </div>
+
+          <!-- State Machine UI -->
 
           <!-- INPUT VIEW -->
           <div class="tools-view tools-view--input">
@@ -1572,9 +1572,7 @@
             >
               <div class="flex-1 min-w-0">
                 <h4 class="settings-item-title">Versão do sistema</h4>
-                <p class="settings-item-description">
-                  NeuraHire AI v1.0
-                </p>
+                <p class="settings-item-description">NeuraHire AI v1.0</p>
               </div>
             </div>
 
@@ -1588,7 +1586,7 @@
                   Acompanhe o
                   <span
                     data-page="labs"
-                    class="page-link text-emerald-400 hover:text-emerald-300 cursor-pointer"
+                    class="nav-link text-emerald-400 hover:opacity-75 cursor-pointer"
                   >
                     roadmap do produto
                   </span>
@@ -2126,7 +2124,7 @@
                   <!-- BUTTON -->
                   <button
                     type="submit"
-                    class="w-full py-3 rounded-lg cursor-pointer bg-(--bg-button) hover:brightness-75 text-(--text-primary) font-semibold transition-all duration-300 ease-out"
+                    class="w-full py-3 rounded-lg cursor-pointer bg-(--bg-button) text-(--text-primary) font-semibold transition-all active:scale-95 hover:opacity-80 duration-300 ease-out"
                   >
                     Enviar mensagem
                   </button>
@@ -2141,71 +2139,86 @@
       <!-- FOOTER -->
       <!-- ===================================== -->
       <footer
-        class="flex flex-wrap flex-col md:flex-row items-center justify-center gap-6 h-auto py-8 mx-6 border-t border-(--border-default) text-sm text-(--text-subtitle)"
-        id="footer"
+        class="flex flex-col items-center gap-8 md:gap-10 h-auto py-12 md:py-16 mx-6 border-t border-(--border-default) text-sm text-(--text-subtitle) u-hidden"
       >
-        <button
-          data-page="tools"
-          class="page-link flex items-center gap-2 notranslate whitespace-nowrap cursor-pointer transition duration-200 hover:brightness-125 active:scale-[0.95] focus:outline-none"
+        <!-- Brand / descrição -->
+        <div class="text-center max-w-md space-y-3">
+          <div class="flex items-center gap-2 justify-center">
+            <img
+              src="./assets/NeuraHire-AI-Logo.png"
+              alt="NeuraHire AI Logo"
+              class="h-7"
+            />
+
+            <h3 class="text-lg font-semibold text-(--text-primary)">
+              NeuraHire AI
+            </h3>
+          </div>
+
+          <p class="text-sm text-(--text-subtitle)">
+            Plataforma de Inteligência Artificial para recrutamento, análise de
+            currículos e desenvolvimento profissional inteligente.
+          </p>
+        </div>
+
+        <!-- Links / SPA -->
+        <div
+          class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4"
         >
-          <i
-            data-lucide="brain-circuit"
-            aria-hidden="true"
-            class="text-(--text-tertiary) h-3"
-          ></i>
+          <button
+            data-page="tools"
+            class="nav-link flex items-center gap-2 px-4 py-2 rounded-full cursor-pointer border border-(--border-default) hover:bg-white/5 focus:outline-none focus-visible:shadow-[var(--shadow-green-soft),0_0_10px_var(--glass-green-2)] active:scale-95 transition-all"
+          >
+            <i
+              data-lucide="brain-circuit"
+              class="text-(--text-tertiary) h-3"
+            ></i>
+            <p>Advanced AI Tools</p>
+          </button>
 
-          <p class="text-sm">Advanced AI Tools</p>
-        </button>
+          <button
+            data-page="workspace"
+            class="nav-link flex items-center gap-2 px-4 py-2 rounded-full cursor-pointer border border-(--border-default) hover:bg-white/5 focus:outline-none focus-visible:shadow-[var(--shadow-green-soft),0_0_10px_var(--glass-green-2)] active:scale-95 transition-all"
+          >
+            <i data-lucide="globe" class="text-(--text-tertiary) h-3"></i>
+            <p>AI Workspace</p>
+          </button>
 
-        <button
-          type="button"
-          data-page="workspace"
-          class="page-link flex items-center gap-2 whitespace-nowrap cursor-pointer transition duration-200 hover:brightness-125 active:scale-[0.95] focus:outline-none"
+          <button
+            data-page="labs"
+            class="nav-link flex items-center gap-2 px-4 py-2 rounded-full cursor-pointer border border-(--border-default) hover:bg-white/5 focus:outline-none focus-visible:shadow-[var(--shadow-green-soft),0_0_10px_var(--glass-green-2)] active:scale-95 transition-all"
+          >
+            <i data-lucide="refresh-cw" class="text-(--text-tertiary) h-3"></i>
+            <p>Constant Updates</p>
+          </button>
+
+          <button
+            data-page="contact"
+            class="nav-link flex items-center gap-2 px-4 py-2 rounded-full cursor-pointer border border-(--border-default) hover:bg-white/5 focus:outline-none focus-visible:shadow-[var(--shadow-green-soft),0_0_10px_var(--glass-green-2)] active:scale-95 transition-all"
+          >
+            <i data-lucide="headset" class="text-(--text-tertiary) h-3"></i>
+            <p>Dedicated Support</p>
+          </button>
+        </div>
+
+        <!-- frase institucional -->
+        <p class="text-xs text-(--text-subtitle) text-center max-w-md">
+          Construído com JavaScript, Node.js e IA para transformar o
+          recrutamento em decisões mais inteligentes e rápidas.
+        </p>
+
+        <!-- copyright -->
+        <div
+          class="w-full pt-6 border-t border-(--border-default) text-center space-y-2"
         >
-          <i
-            data-lucide="globe"
-            aria-hidden="true"
-            class="text-(--text-tertiary) h-3"
-          ></i>
-
-          <p class="text-sm">AI Workspace</p>
-        </button>
-
-        <button
-          type="button"
-          data-page="labs"
-          class="page-link flex items-center whitespace-nowrap gap-2 cursor-pointer transition duration-200 hover:brightness-125 active:scale-[0.95] focus:outline-none"
-        >
-          <i
-            data-lucide="refresh-cw"
-            aria-hidden="true"
-            class="text-(--text-tertiary) h-3"
-          ></i>
-
-          <p class="text-sm">Constant Updates</p>
-        </button>
-
-        <button
-          type="button"
-          data-page="contact"
-          class="page-link flex items-center whitespace-nowrap gap-2 cursor-pointer transition duration-200 hover:brightness-125 active:scale-[0.95] focus:outline-none"
-        >
-          <i
-            data-lucide="headset"
-            aria-hidden="true"
-            class="text-(--text-tertiary) h-3"
-          ></i>
-
-          <p class="text-sm">Dedicated Support</p>
-        </button>
+          <p class="text-xs">
+            © 2026 NeuraHire AI. Todos os direitos reservados.
+          </p>
+        </div>
       </footer>
     </div>
 
-    <script src="js/router.js"></script>
-    <script src="js/ui.js"></script>
-    <script src="js/chat.js"></script>
-    <script src="js/tools.js"></script>
-    <script src="js/main.js" defer></script>
+    <script type="module" src="js/core/main.js"></script>
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest" defer></script>

@@ -1,0 +1,25 @@
+# 📦 Dependências instaladas pelo npm
+# Contém todas as bibliotecas do projeto (Tailwind, Express, etc.)
+# É gerado automaticamente com "npm install" e NÃO deve ir para o Git
+node_modules/
+
+# 🎨 Arquivo gerado pelo Tailwind CSS
+# Esse arquivo é compilado automaticamente pelo CLI do Tailwind
+# Ele pode ser recriado a qualquer momento, então não precisa versionar
+frontend/css/output.css
+
+# 🪵 Logs do sistema e debug
+# Arquivos criados automaticamente pelo Node ou ferramentas
+# Não são importantes para o funcionamento do projeto
+*.log
+
+# 💻 Arquivos do sistema operacional
+# Gerados automaticamente pelo macOS e Windows
+# Não fazem parte do projeto
+.DS_Store
+Thumbs.db
+
+# 🔐 Variáveis de ambiente ⬜ (backend futuro)
+# Aqui ficam chaves de API, senhas e configurações sensíveis
+# ❌ NUNCA deve ser enviado para o Git por segurança 
+.env

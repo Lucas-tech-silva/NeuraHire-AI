@@ -1,0 +1,25 @@
+{
+  "name": "neurahire-ai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lucas-tech-silva/NeuraHire-AI.git"
+  },
+  "keywords": [],
+  "author": "Lucas Silva",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Lucas-tech-silva/NeuraHire-AI/issues"
+  },
+  "homepage": "https://github.com/Lucas-tech-silva/NeuraHire-AI#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.1",
+    "tailwindcss": "^4.3.1"
+  }
+}

@@ -1,5 +1,5 @@
 /* =========================================================
-   SIDEBAR 
+  SIDEBAR 
 ========================================================= */
 
 .sidebar-label {
@@ -28,6 +28,7 @@
   color: var(--text-secondary);
 
   border-radius: 0.5rem;
+  outline: none;
   cursor: pointer;
 
   transition:
@@ -58,6 +59,10 @@
 
 .sidebar-link.active .sidebar-icon {
   color: var(--text-tertiary);
+}
+
+.sidebar-link:focus {
+  box-shadow: 3px 3px 0px var(--glass-green-2);
 }
 
 .sidebar-link.active:hover {
@@ -91,7 +96,7 @@
 }
 
 /* =========================================================
-   TOOLS - BASE LAYOUT
+  TOOLS - BASE LAYOUT
 ========================================================= */
 
 .tools-header {
@@ -109,7 +114,7 @@
 }
 
 /* =========================================================
-   SEARCH
+  SEARCH
 ========================================================= */
 
 .tools-search {
@@ -144,7 +149,7 @@
 }
 
 .tools-search__input::placeholder {
-  font-size: 15px;
+  font-size: 0.9rem;
   color: var(--text-subtitle);
 }
 
@@ -158,7 +163,7 @@
 }
 
 /* =========================================================
-   FILTERS
+  FILTERS
 ========================================================= */
 
 .tools-filters {
@@ -173,12 +178,13 @@
   justify-content: center;
   height: 2.7rem;
   padding: 0 0.9rem;
-  border: 1px solid var(--border-default);
-  border-radius: 0.5rem;
   background: var(--bg-card);
   color: var(--text-subtitle);
   font-size: 0.85rem;
   font-weight: 500;
+  border: 1px solid var(--border-default);
+  border-radius: 0.5rem;
+  outline: none;
   cursor: pointer;
   transition: 0.25s ease;
 }
@@ -194,12 +200,16 @@
   color: var(--text-primary);
 }
 
+.tools-btn:focus {
+  border-color: var(--hover-border);
+  box-shadow: 0 0 0 3px var(--glass-green);
+}
+
 /* =========================================================
-   GRID CARDS
+GRID CARDS
 ========================================================= */
 
-.tools-grid__card {
-  all: unset;
+.card-base {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -208,24 +218,27 @@
   border: 1px solid var(--border-default);
   border-radius: 0.75rem;
 
-  transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease,
-    transform 0.2s ease;
+  transition: all 0.2s ease;
 }
 
-.tools-grid__card:hover {
+.tools-grid__card {
+  cursor: pointer;
+  text-align: left;
+  outline: none;
+}
+
+.card-base:hover {
   border-color: var(--hover-border);
   box-shadow: 0 0 0 3px var(--glass-green);
 }
 
-.tools-grid__card:focus {
+.card-base:focus {
   border-color: var(--hover-border);
   box-shadow: 0 0 0 3px var(--glass-green);
 }
 
 /* =========================================================
-   CARD HEADER
+  CARD HEADER
 ========================================================= */
 
 .tools-grid__header {
@@ -248,7 +261,7 @@
   transition: 0.25s ease;
 }
 
-.tools-grid__card:hover .tools-grid__icon {
+.card-base:hover .tools-grid__icon {
   transform: scale(1.08);
   box-shadow:
     0 0 0 2px var(--glass-green),
@@ -269,7 +282,7 @@
   transition: color 0.25s ease;
 }
 
-.tools-grid__card:hover .tools-grid__title {
+.card-base:hover .tools-grid__title {
   color: var(--text-tertiary);
 }
 
@@ -292,13 +305,13 @@
     color 0.25s ease;
 }
 
-.tools-grid__card:hover .tools-grid__arrow {
+.card-base:hover .tools-grid__arrow {
   color: #10b981;
   transform: translateX(6px);
 }
 
 /* =========================================================
-   CARD CONTENT
+  CARD CONTENT
 ========================================================= */
 
 .tools-grid__description {
@@ -322,7 +335,7 @@
 }
 
 /* =========================================================
-   STATE MACHINE (VIEWS)
+  STATE MACHINE (VIEWS)
 ========================================================= */
 
 .tools-view {
@@ -352,7 +365,7 @@
 }
 
 /* =========================================================
-   BUTTON (BACK)
+  BUTTON (BACK)
 ========================================================= */
 
 .tools-back-btn {
@@ -366,11 +379,7 @@
   color: var(--text-subtitle);
   cursor: pointer;
 
-  transition:
-    transform 0.2s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 .tools-back-btn:hover {
@@ -411,7 +420,7 @@
 }
 
 /* =========================
-   PLATFORM
+  PLATFORM
 ========================= */
 
 .plataform-grid {
@@ -432,9 +441,7 @@
   border: 1px solid var(--border-default);
   border-radius: 0.75rem;
 
-  transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
+  transition: all 0.25s ease;
 }
 
 .plataform-mode:hover {
@@ -506,7 +513,7 @@
 }
 
 /* =========================
-   TABLET
+  TABLET
 ========================= */
 @media (min-width: 768px) {
   .plataform-grid {
@@ -515,7 +522,7 @@
 }
 
 /* =========================
-   DESKTOP
+  DESKTOP
 ========================= */
 @media (min-width: 1024px) {
   .plataform-grid {
@@ -524,7 +531,7 @@
 }
 
 /* =========================================================
-   INSIGHTS
+  INSIGHTS
 ========================================================= */
 
 .insights-grid {
@@ -689,11 +696,7 @@
   border: 1px solid var(--border-soft);
   border-radius: 0.85rem;
 
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.25s ease,
-    border-color 0.2s ease,
-    background 0.25s ease;
+  transition: all 0.25s ease;
 }
 
 .activity-card:hover {
@@ -798,7 +801,7 @@
 }
 
 /* =========================
-   TABLET
+  TABLET
 ========================= */
 @media (min-width: 768px) {
   .insights-grid {
@@ -815,7 +818,7 @@
 }
 
 /* =========================
-   DESKTOP
+  DESKTOP
 ========================= */
 @media (min-width: 1200px) {
   .insights-grid {
@@ -828,7 +831,7 @@
 }
 
 /* =========================
-   SETTINGS CARD
+  SETTINGS CARD
 ========================= */
 
 .settings-card {
@@ -888,7 +891,7 @@
 }
 
 /* =========================
-   TABLET
+  TABLET
 ========================= */
 @media (min-width: 768px) {
   .settings-card {
@@ -901,7 +904,7 @@
 }
 
 /* =========================
-   DESKTOP
+  DESKTOP
 ========================= */
 @media (min-width: 1200px) {
   .settings-card {
@@ -914,7 +917,7 @@
 }
 
 /* =========================
-   CONTACT CARD
+  CONTACT CARD
 ========================= */
 
 .contact-card {
@@ -927,12 +930,14 @@
 
   background: var(--bg-card);
   border: 1px solid var(--border-default);
+  outline: none;
 
   transition: 0.25s ease;
   text-decoration: none;
 }
 
-.contact-card:hover {
+.contact-card:hover,
+.contact-card:focus {
   border-color: var(--hover-border);
   box-shadow: 0 0 0 3px var(--glass-green);
 }
@@ -966,7 +971,7 @@
 }
 
 /* =========================
-   TABLET
+  TABLET
 ========================= */
 @media (min-width: 768px) {
   .contact-card {
@@ -975,7 +980,7 @@
 }
 
 /* =========================================================
-   COMPONENTS — LABS CARDS
+  COMPONENTS — LABS CARDS
 ========================================================= */
 
 .labs-cards {
@@ -988,7 +993,7 @@
 }
 
 /* =========================================================
-   COMPONENTS — CHIPS (SKILLS / TAGS)
+  COMPONENTS — CHIPS (SKILLS / TAGS)
 ========================================================= */
 
 .skill-chip {
@@ -1009,4 +1014,8 @@
   background: rgba(255, 255, 255, 0.1);
   color: var(--text-primary);
   transform: translateY(-2px);
+}
+
+.u-hidden {
+  display: none !important;
 }
