@@ -19,7 +19,9 @@
     <link rel="stylesheet" href="css/components.css" />
   </head>
 
-  <body class="font-[Inter] bg-(--bg-primary) text-(--text-primary)">
+  <body
+    class="font-[Inter] bg-(--bg-primary) text-(--text-primary) min-h-screen flex flex-col"
+  >
     <!-- OVERLAY -->
     <div
       id="overlay"
@@ -776,10 +778,7 @@
         <!-- ===================================== -->
         <!-- AI TOOLS -->
         <!-- ===================================== -->
-        <section
-          id="tools"
-          class="page relative w-full min-h-[90vh] overflow-hidden"
-        >
+        <section id="tools" class="page relative w-full mt-6">
           <!-- CARDS VIEW -->
           <div class="tools-view tools-view--cards active">
             <div class="tools-header">
@@ -792,9 +791,10 @@
 
                 <input
                   type="text"
+                  maxlength="100"
                   placeholder="Buscar Ferramentas..."
                   class="tools-search__input"
-                >
+                />
               </div>
 
               <div class="tools-filters">
@@ -805,8 +805,8 @@
             </div>
 
             <div class="mt-6">
-              <p class="text-xs text-(--text-secondary)">
-                8 ferramentas encontradas
+              <p id="tools-count" class="text-xs text-(--text-secondary)">
+                <!-- JavaScript -->
               </p>
             </div>
 
@@ -845,7 +845,7 @@
 
                 <div class="tools-grid__tags">
                   <span class="tools-grid__tag">Análise</span>
-                  <span class="tools-grid__tag">Arquivo</span>
+                  <span class="tools-grid__tag">Texto</span>
                 </div>
               </button>
 
@@ -879,7 +879,7 @@
 
                 <div class="tools-grid__tags">
                   <span class="tools-grid__tag">Otimização</span>
-                  <span class="tools-grid__tag">Arquivo</span>
+                  <span class="tools-grid__tag">Texto</span>
                 </div>
               </button>
 
@@ -913,7 +913,7 @@
 
                 <div class="tools-grid__tags">
                   <span class="tools-grid__tag">Prática</span>
-                  <span class="tools-grid__tag">Formulário</span>
+                  <span class="tools-grid__tag">Texto</span>
                 </div>
               </button>
 
@@ -944,7 +944,7 @@
 
                 <p class="tools-grid__description">
                   Avaliação completa do seu perfil profissional com
-                  recomendações.
+                  recomendações personalizadas.
                 </p>
 
                 <div class="tools-grid__tags">
@@ -977,12 +977,13 @@
                 </div>
 
                 <p class="tools-grid__description">
-                  Avaliação de compatibilidade e análise de skills.
+                  Análise de compatibilidade com avaliação de habilidades
+                  técnicas e comportamentais.
                 </p>
 
                 <div class="tools-grid__tags">
                   <span class="tools-grid__tag">Avaliação</span>
-                  <span class="tools-grid__tag">Arquivo</span>
+                  <span class="tools-grid__tag">Texto</span>
                 </div>
               </button>
 
@@ -1010,12 +1011,13 @@
                 </div>
 
                 <p class="tools-grid__description">
-                  Compare candidatos lado a lado com ranking inteligente.
+                  Compare candidatos lado a lado com análise inteligente de
+                  perfis, habilidades e experiências.
                 </p>
 
                 <div class="tools-grid__tags">
                   <span class="tools-grid__tag">Comparação</span>
-                  <span class="tools-grid__tag">Arquivo</span>
+                  <span class="tools-grid__tag">Texto</span>
                 </div>
               </button>
 
@@ -1043,12 +1045,13 @@
                 </div>
 
                 <p class="tools-grid__description">
-                  Gere perguntas de entrevista personalizadas com IA.
+                  Gere perguntas de entrevista personalizadas com IA baseada no
+                  perfil do candidato.
                 </p>
 
                 <div class="tools-grid__tags">
                   <span class="tools-grid__tag">Geração</span>
-                  <span class="tools-grid__tag">Formulário</span>
+                  <span class="tools-grid__tag">Entrevista</span>
                 </div>
               </button>
 
@@ -1076,12 +1079,13 @@
                 </div>
 
                 <p class="tools-grid__description">
-                  Análise de compatibilidade entre candidato e vaga.
+                  Análise de compatibilidade entre candidato e vaga com
+                  avaliação de aderência.
                 </p>
 
                 <div class="tools-grid__tags">
                   <span class="tools-grid__tag">Análise</span>
-                  <span class="tools-grid__tag">Formulário</span>
+                  <span class="tools-grid__tag">Matching</span>
                 </div>
               </button>
             </div>
@@ -1092,7 +1096,7 @@
           <!-- INPUT VIEW -->
           <div class="tools-view tools-view--input">
             <div
-              class="max-w-5xl mx-auto my-8 rounded-3xl border border-(--border-default) bg-(--bg-card) p-5 md:p-8"
+              class="rounded-2xl border border-(--border-default) bg-(--bg-card) p-5 md:p-8"
             >
               <button
                 type="button"
@@ -1103,7 +1107,7 @@
                 <span class="tools-back-btn__text">Voltar</span>
               </button>
 
-              <div class="mt-8">
+              <div class="mt-4">
                 <span
                   class="inline-flex rounded-full px-3 py-1 text-xs bg-(--bg-span-tools) text-(--text-tertiary)"
                 >
@@ -1137,7 +1141,7 @@
                   <input
                     id="title"
                     type="text"
-                    placeholder="Digite um título"
+                    placeholder="Ex: Desenvolvedor Front-end Senior"
                     class="w-full rounded-2xl border border-(--border-default) bg-(--bg-primary) px-4 py-4 outline-none transition-all duration-200 hover:border-(--border-hover-strong) focus:border-(--color-accent) focus:shadow-[0_0_0_2px_rgba(16,185,129,0.25)]"
                   />
                 </div>
@@ -1152,7 +1156,7 @@
 
                   <textarea
                     id="description"
-                    rows="12"
+                    rows="10"
                     placeholder="Digite sua descrição..."
                     class="w-full resize-none rounded-2xl border border-(--border-default) bg-(--bg-primary) px-4 py-4 outline-none transition-all duration-200 hover:border-(--border-hover-strong) focus:border-(--color-accent) focus:shadow-[0_0_0_2px_rgba(16,185,129,0.25)]"
                   ></textarea>
@@ -1163,9 +1167,9 @@
                 <button
                   type="button"
                   id="runTool"
-                  class="rounded-2xl bg-(--bg-button) px-6 py-3 text-sm font-medium text-(--text-primary)"
+                  class="rounded-2xl bg-(--bg-button) px-6 py-3 cursor-pointer text-sm font-medium text-(--text-primary) hover:opacity-80 active:scale-95 transition-all"
                 >
-                  Analisar
+                  Avaliar com IA
                 </button>
               </div>
             </div>
@@ -1226,7 +1230,7 @@
           <!-- RESULT VIEW -->
           <div class="tools-view tools-view--result">
             <div
-              class="max-w-5xl mx-auto my-8 rounded-3xl border border-(--border-default) bg-(--bg-card) p-5 md:p-8"
+              class="rounded-3xl border border-(--border-default) bg-(--bg-card) p-5 md:p-8"
             >
               <button
                 type="button"
@@ -1247,7 +1251,7 @@
                 </div>
 
                 <h2 class="mt-6 text-2xl font-semibold">
-                  Compatibilidade Excelente
+                  Porcentagem de Excelente
                 </h2>
 
                 <p class="mt-3 text-(--text-subtitle)">
@@ -1255,10 +1259,16 @@
                 </p>
               </div>
 
-              <div
-                id="resultContent"
-                class="mt-8 rounded-2xl border border-(--border-default) p-6 text-sm leading-7"
-              ></div>
+              <div class="mt-8">
+                <p class="text-sm text-(--text-subtitle) mb-3">
+                  Resposta da IA:
+                </p>
+
+                <div
+                  id="resultContent"
+                  class="rounded-2xl border border-(--border-default) bg-(--bg-card) p-6 text-sm leading-7 text-(--text-primary) min-h-24"
+                ></div>
+              </div>
             </div>
           </div>
         </section>
@@ -1772,7 +1782,7 @@
                     data-lucide="check"
                     class="h-3 w-3 mt-0.5 text-(--status-done) shrink-0"
                   ></i>
-                  <span>8 ferramentas de IA integradas</span>
+                  <span class="">8 ferramentas de IA integradas</span>
                 </li>
 
                 <li class="flex items-start gap-2">

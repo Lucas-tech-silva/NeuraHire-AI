@@ -1,9 +1,18 @@
-// Mobile Menu
+/* =========================================================
+   DOM ELEMENTS
+========================================================= */
 
 const sidebar = document.querySelector(".sidebar");
 const sidebarOverlay = document.querySelector("#overlay");
 const menuToggle = document.querySelector(".menu-toggle");
 const menuClose = document.querySelector(".menu-close");
+
+const clock = document.querySelector(".clock");
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
 
 export const initMobileMenu = () => {
   if (!menuToggle || !menuClose || !sidebar || !sidebarOverlay) return;
@@ -25,25 +34,25 @@ export const closeSidebar = () => {
   document.body.classList.remove("overflow-hidden");
 };
 
-// Clock
 
-const clock = document.querySelector(".clock");
+/* =========================================================
+   LIVE CLOCK
+========================================================= */
+
+export const initClock = () => {
+  if (!clock) return;
+
+  updateTime();
+
+  setInterval(updateTime, 1000);
+};
 
 const updateTime = () => {
   const now = new Date();
 
   const hours = String(now.getHours()).padStart(2, "0");
   const minutes = String(now.getMinutes()).padStart(2, "0");
-  const seconds = String(now.getSeconds()).padStart(2, "0");
 
   clock.textContent = `${hours}:${minutes}`;
   clock.setAttribute("datetime", now.toISOString());
 };
-
-export const initClock = () => {
-  if (!clock) return;
-
-  updateTime();
-  setInterval(updateTime, 1000);
-};
-

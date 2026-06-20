@@ -1,13 +1,29 @@
 import { closeSidebar } from "../ui/ui.js";
+import { showView, cancelToolTimeout } from "./tools.js";
+
+/* =========================================================
+   DOM ELEMENTS
+========================================================= */
 
 const pages = document.querySelectorAll(".page");
-const sideBarLinks = document.querySelectorAll(".sidebar-link");
+const sidebarLinks = document.querySelectorAll(".sidebar-link");
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
 
 const getSidebarButton = (page) =>
   document.querySelector(`.sidebar-link[data-page="${page}"]`);
 
+
+/* =========================================================
+   ROUTER 
+========================================================= */
+
 export const initRouter = () => {
   const page = window.location.hash.slice(1) || "home";
+
   renderPage(page);
 
   document.addEventListener("click", (event) => {
@@ -20,6 +36,7 @@ export const initRouter = () => {
 
   window.addEventListener("hashchange", () => {
     const page = window.location.hash.slice(1) || "home";
+
     renderPage(page);
   });
 };
@@ -31,11 +48,19 @@ const renderPage = (page) => {
   updateHeader(page);
 
   closeSidebar();
+
+  cancelToolTimeout();
+  showView("cards");
 };
 
 const navigateTo = (page) => {
   window.location.hash = page;
 };
+
+
+/* =========================================================
+   UI STATE
+========================================================= */
 
 const updatePages = (page) => {
   pages.forEach((pageEl) => {
@@ -50,7 +75,7 @@ const updatePages = (page) => {
 };
 
 const updateSidebar = (page) => {
-  sideBarLinks.forEach((link) => {
+  sidebarLinks.forEach((link) => {
     link.classList.remove("active");
   });
 

@@ -1,9 +1,12 @@
 {
   "name": "neurahire-ai",
   "version": "1.0.0",
-  "description": "",
-  "main": "",
+  "description": "NeuraHire AI é uma plataforma web inteligente focada em experiência do usuário (UX/UI), projetada para facilitar a descoberta, organização e avaliação de ferramentas de forma intuitiva e eficiente. O projeto prioriza uma interface moderna, navegação fluida e interações dinâmicas, proporcionando uma experiência clara, acessível e centrada no usuário.",
+  "main": "backend/server.js",
+  "type": "module",
   "scripts": {
+    "start": "node backend/server.js",
+    "build": "npx tailwindcss -i ./frontend/css/input.css -o ./frontend/css/output.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -13,13 +16,15 @@
   "keywords": [],
   "author": "Lucas Silva",
   "license": "ISC",
-  "type": "module",
   "bugs": {
     "url": "https://github.com/Lucas-tech-silva/NeuraHire-AI/issues"
   },
   "homepage": "https://github.com/Lucas-tech-silva/NeuraHire-AI#readme",
   "dependencies": {
     "@tailwindcss/cli": "^4.3.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
     "tailwindcss": "^4.3.1"
   }
 }

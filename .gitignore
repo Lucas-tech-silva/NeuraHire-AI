@@ -1,20 +1,18 @@
-# 📦 Dependências instaladas pelo npm
-# Contém todas as bibliotecas do projeto (Tailwind, Express, etc.)
-# É gerado automaticamente com "npm install" e NÃO deve ir para o Git
+# Dependências
 node_modules/
 
-# 🪵 Logs do sistema e debug
-# Arquivos criados automaticamente pelo Node ou ferramentas
-# Não são importantes para o funcionamento do projeto
+# Environment variables
+.env
+.env.local
+
+# Logs
 *.log
 
-# 💻 Arquivos do sistema operacional
-# Gerados automaticamente pelo macOS e Windows
-# Não fazem parte do projeto
+# OS files
 .DS_Store
 Thumbs.db
 
-# 🔐 Variáveis de ambiente ⬜ (backend futuro)
-# Aqui ficam chaves de API, senhas e configurações sensíveis
-# ❌ NUNCA deve ser enviado para o Git por segurança 
-.env
+# Tailwind / build
+dist/
+build/
+output.css
