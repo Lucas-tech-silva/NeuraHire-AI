@@ -340,20 +340,31 @@ GRID CARDS
   STATE MACHINE (VIEWS)
 ========================================================= */
 
+.tools-stage {
+  display: grid;
+  align-items: start;
+}
+
 .tools-view {
-  position: absolute;
-  inset: 0;
+  grid-area: 1 / 1;
+
+  height: 0;
+  overflow: hidden;
+
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: translateY(12px);
 
+  transform: translateY(12px);
   transition:
     opacity 0.35s ease,
     transform 0.35s ease;
 }
 
 .tools-view.active {
+  height: auto;
+  overflow: visible;
+
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
@@ -362,6 +373,136 @@ GRID CARDS
 
 .tools-view--cards {
   position: relative;
+}
+
+/* ANIMATION STATE RESULT */
+
+.hero-ai {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-ai__core {
+  width: 64px;
+  height: 64px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  animation: pulse 3s ease infinite;
+}
+
+.hero-ai__ring {
+  position: absolute;
+  border-radius: 999px;
+  border: 1px solid rgba(16, 185, 129, 0.15);
+}
+
+.hero-ai__ring--1 {
+  width: 80px;
+  height: 80px;
+
+  animation: rotate 12s linear infinite;
+}
+
+.hero-ai__ring--2 {
+  width: 96px;
+  height: 96px;
+  border-style: dashed;
+
+  animation: rotateReverse 18s linear infinite;
+}
+
+.hero-glow {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.08);
+  filter: blur(80px);
+  left: 50%;
+  top: -80px;
+
+  transform: translateX(-50%);
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateReverse {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0);
+  }
+}
+
+/* TOAST */
+
+#toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  min-width: 320px;
+  max-width: 420px;
+  padding: 16px 18px;
+  background: rgba(17, 24, 39, 0.95);
+  color: #fff;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+
+  transition: all 0.3s ease;
+  z-index: 9999;
+}
+
+
+/* ESTADO VISÍVEL */
+
+#toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#toast.error {
+  border-left: 4px solid #ef4444;
+}
+
+#toast.success {
+  border-left: 4px solid #22c55e;
 }
 
 /* =========================================================
@@ -881,13 +1022,11 @@ GRID CARDS
   border: 1px solid var(--border-default);
   color: var(--text-primary);
   outline: none;
-  transition: all 200ms ease;
 }
 
 .settings-select:focus {
   border-color: var(--color-accent);
   box-shadow: 0 0 0 3px var(--glass-green);
-  transform: translateY(-2px);
 }
 
 /* =========================

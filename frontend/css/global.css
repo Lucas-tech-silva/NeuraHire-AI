@@ -1,7 +1,6 @@
 /* =========================================================
    DESIGN SYSTEM — NEURAHIRE AI 
 ========================================================= */
-
 :root {
   /* BACKGROUNDS / SURFACES */
   --bg-primary: #111113;
@@ -65,7 +64,7 @@
   --glass-green: rgba(16, 185, 129, 0.08);
   --glass-green-2: rgba(16, 185, 129, 0.15);
 
-/* =========================================================
+  /* =========================================================
      LEGEND / STATUS DOTS (ROADMAP / UI STATUS)
 ========================================================= */
 
@@ -95,4 +94,25 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--glass-green-2);
+}
+
+#chatMessages p {
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+
+#sendBtn,
+#chatInput {
+  transition: opacity 0.2s ease;
+}
+
+#sendBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none
+}
+
+#chatInput:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }

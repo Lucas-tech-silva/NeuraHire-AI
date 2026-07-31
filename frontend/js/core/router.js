@@ -1,5 +1,5 @@
 import { closeSidebar } from "../ui/ui.js";
-import { showView, cancelToolTimeout } from "./tools.js";
+import { showView, applyToolFilter } from "./tools.js";
 
 /* =========================================================
    DOM ELEMENTS
@@ -8,14 +8,12 @@ import { showView, cancelToolTimeout } from "./tools.js";
 const pages = document.querySelectorAll(".page");
 const sidebarLinks = document.querySelectorAll(".sidebar-link");
 
-
 /* =========================================================
    HELPERS
 ========================================================= */
 
 const getSidebarButton = (page) =>
   document.querySelector(`.sidebar-link[data-page="${page}"]`);
-
 
 /* =========================================================
    ROUTER 
@@ -31,7 +29,7 @@ export const initRouter = () => {
 
     if (!targetLink) return;
 
-    navigateTo(targetLink.dataset.page);
+    navigateTo(targetLink.dataset.page, targetLink.dataset.filter);
   });
 
   window.addEventListener("hashchange", () => {
@@ -41,22 +39,27 @@ export const initRouter = () => {
   });
 };
 
-const renderPage = (page) => {
-  updatePages(page);
+const renderPage = (page, filter) => {
+  window.scrollTo(0, 0)
+
+  updatePages(page);  
   updateSidebar(page);
   updateFooter(page);
   updateHeader(page);
 
   closeSidebar();
 
-  cancelToolTimeout();
   showView("cards");
+
+  if (filter) {
+    applyToolFilter(filter);
+  }
 };
 
-const navigateTo = (page) => {
+const navigateTo = (page, filter) => {
   window.location.hash = page;
+  renderPage(page, filter);
 };
-
 
 /* =========================================================
    UI STATE
@@ -102,7 +105,7 @@ const updateHeader = (page) => {
 
   const sidebarButton = getSidebarButton(page);
 
-  if (!sidebarButton) return;
+  if (!headerTitle || headerDesc || !sidebarButton) return;
 
   headerTitle.textContent = sidebarButton.dataset.title;
   headerDesc.textContent = sidebarButton.dataset.description;

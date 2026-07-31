@@ -13,20 +13,25 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="css/output.css" />
+    <link rel="stylesheet" href="./css/output.css" />
 
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/components.css" />
   </head>
 
   <body
-    class="font-[Inter] bg-(--bg-primary) text-(--text-primary) min-h-screen flex flex-col"
+    class="font-[Inter] bg-(--bg-primary) text-(--text-primary) min-h-screen"
   >
     <!-- OVERLAY -->
     <div
       id="overlay"
       class="u-hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
     ></div>
+
+    <!-- TOAST -->
+    <div id="toast">
+      <!-- JavaScript -->
+    </div>
 
     <!-- ===================================== -->
     <!-- SIDEBAR -->
@@ -52,7 +57,7 @@
           class="h-9"
         />
 
-        <div>
+        <div class="notranslate">
           <span class="text-sm font-semibold tracking-[-0.35px]">
             NeuraHire
           </span>
@@ -338,7 +343,9 @@
 
               <!-- Stats Card -->
               <div>
-                <h2 class="text-2xl sm:text-3xl font-bold">8</h2>
+                <h2 class="tools-total-count text-2xl sm:text-3xl font-bold">
+                  8
+                </h2>
                 <p class="text-xs text-(--text-subtitle)">Ferramentas de IA</p>
               </div>
             </div>
@@ -555,7 +562,11 @@
                 </ul>
 
                 <!-- Card Button -->
-                <button class="nav-link plataform-button" data-page="tools">
+                <button
+                  class="nav-link plataform-button"
+                  data-page="tools"
+                  data-filter="candidato"
+                >
                   Explorar Modo Candidato
 
                   <i
@@ -636,7 +647,11 @@
                 </ul>
 
                 <!-- Card Button -->
-                <button class="nav-link plataform-button" data-page="tools">
+                <button
+                  class="nav-link plataform-button"
+                  data-page="tools"
+                  data-filter="recrutador"
+                >
                   Explorar Modo Recrutador
 
                   <i
@@ -701,7 +716,7 @@
           >
             <!-- CHAT AREA -->
             <div
-              id="chat"
+              id="chatMessages"
               class="flex-1 space-y-4 overflow-y-auto overscroll-contain scroll-smooth px-4 sm:px-6 py-4"
             >
               <!-- AI MESSAGE -->
@@ -716,6 +731,47 @@
                     LinkedIn, simular entrevistas e evoluir sua carreira em
                     tecnologia 🚀
                   </p>
+                </div>
+              </div>
+
+              <!-- AI Loading -->
+              <div id="aiLoading" class="justify-start hidden">
+                <div
+                  class="max-w-xs rounded-3xl rounded-tl-md border border-(--border-soft) bg-(--bg-card) px-5 py-4"
+                >
+                  <div class="flex items-center gap-3">
+                    <div
+                      class="flex h-10 w-10 items-center justify-center rounded-xl bg-(--bg-primary)"
+                    >
+                      <i
+                        data-lucide="sparkles"
+                        class="h-5 w-5 text-(--text-primary) animate-pulse"
+                      ></i>
+                    </div>
+
+                    <div class="flex-1">
+                      <p class="text-sm font-semibold text-(--text-primary)">
+                        NeuraHire AI
+                      </p>
+
+                      <p
+                        class="flex items-center gap-1 text-xs text-(--text-secondary)"
+                      >
+                        Analisando
+                        <span class="flex items-center gap-1 ml-1">
+                          <span
+                            class="h-1 w-1 rounded-full bg-(--bg-button) animate-bounce"
+                          ></span>
+                          <span
+                            class="h-1 w-1 rounded-full bg-(--bg-button) animate-bounce [animation-delay:150ms]"
+                          ></span>
+                          <span
+                            class="h-1 w-1 rounded-full bg-(--bg-button) animate-bounce [animation-delay:300ms]"
+                          ></span>
+                        </span>
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -778,375 +834,383 @@
         <!-- ===================================== -->
         <!-- AI TOOLS -->
         <!-- ===================================== -->
-        <section id="tools" class="page relative w-full mt-6">
+        <section id="tools" class="page relative w-full my-5">
           <!-- CARDS VIEW -->
-          <div class="tools-view tools-view--cards active">
-            <div class="tools-header">
-              <div class="tools-search">
-                <i
-                  data-lucide="search"
-                  class="tools-search__icon"
-                  aria-hidden="true"
-                ></i>
-
-                <input
-                  type="text"
-                  maxlength="100"
-                  placeholder="Buscar Ferramentas..."
-                  class="tools-search__input"
-                />
-              </div>
-
-              <div class="tools-filters">
-                <button type="button" class="tools-btn active">Todas</button>
-                <button type="button" class="tools-btn">Candidato</button>
-                <button type="button" class="tools-btn">Recrutador</button>
-              </div>
-            </div>
-
-            <div class="mt-6">
-              <p id="tools-count" class="text-xs text-(--text-secondary)">
-                <!-- JavaScript -->
-              </p>
-            </div>
-
-            <div
-              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-8"
-            >
-              <!-- CARDS TEMPLATE -->
-
-              <!-- CARD 1 -->
-              <button
-                type="button"
-                class="card-base tools-grid__card"
-                aria-label="Analisar Currículo"
-              >
-                <div class="tools-grid__header">
-                  <div class="tools-grid__icon" aria-hidden="true">
-                    <i data-lucide="scroll-text"></i>
-                  </div>
-
-                  <div class="tools-grid__info flex-1 min-w-0">
-                    <h3 class="tools-grid__title">Analisar Currículo</h3>
-                    <span class="tools-grid__role">Candidato</span>
-                  </div>
-
+          <div class="tools-stage">
+            <div class="tools-view tools-view--cards active">
+              <div class="tools-header">
+                <div class="tools-search">
                   <i
-                    data-lucide="arrow-right"
-                    class="tools-grid__arrow"
+                    data-lucide="search"
+                    class="tools-search__icon"
                     aria-hidden="true"
                   ></i>
-                </div>
-
-                <p class="tools-grid__description">
-                  Análise completa do seu currículo com pontos fortes, gaps e
-                  oportunidades de melhoria.
-                </p>
-
-                <div class="tools-grid__tags">
-                  <span class="tools-grid__tag">Análise</span>
-                  <span class="tools-grid__tag">Texto</span>
-                </div>
-              </button>
-
-              <!-- CARD 2 -->
-              <button
-                type="button"
-                class="card-base tools-grid__card"
-                aria-label="Melhorar Currículo"
-              >
-                <div class="tools-grid__header">
-                  <div class="tools-grid__icon" aria-hidden="true">
-                    <i data-lucide="wand-sparkles"></i>
-                  </div>
-
-                  <div class="tools-grid__info flex-1 min-w-0">
-                    <h3 class="tools-grid__title">Melhorar Currículo</h3>
-                    <span class="tools-grid__role">Candidato</span>
-                  </div>
-
-                  <i
-                    data-lucide="arrow-right"
-                    class="tools-grid__arrow"
-                    aria-hidden="true"
-                  ></i>
-                </div>
-
-                <p class="tools-grid__description">
-                  Receba sugestões inteligentes para otimizar seu currículo e
-                  aumentar suas chances de ser chamado.
-                </p>
-
-                <div class="tools-grid__tags">
-                  <span class="tools-grid__tag">Otimização</span>
-                  <span class="tools-grid__tag">Texto</span>
-                </div>
-              </button>
-
-              <!-- CARD 3 -->
-              <button
-                type="button"
-                class="card-base tools-grid__card"
-                aria-label="Simular Entrevista"
-              >
-                <div class="tools-grid__header">
-                  <div class="tools-grid__icon" aria-hidden="true">
-                    <i data-lucide="audio-lines"></i>
-                  </div>
-
-                  <div class="tools-grid__info flex-1 min-w-0">
-                    <h3 class="tools-grid__title">Simular Entrevista</h3>
-                    <span class="tools-grid__role">Candidato</span>
-                  </div>
-
-                  <i
-                    data-lucide="arrow-right"
-                    class="tools-grid__arrow"
-                    aria-hidden="true"
-                  ></i>
-                </div>
-
-                <p class="tools-grid__description">
-                  Pratique com uma entrevista simulada por IA baseada na vaga
-                  desejada e receba feedback detalhado
-                </p>
-
-                <div class="tools-grid__tags">
-                  <span class="tools-grid__tag">Prática</span>
-                  <span class="tools-grid__tag">Texto</span>
-                </div>
-              </button>
-
-              <!-- CARD 4 -->
-              <button
-                type="button"
-                class="card-base tools-grid__card"
-                aria-label="Analisar Perfil Profissional"
-              >
-                <div class="tools-grid__header">
-                  <div class="tools-grid__icon" aria-hidden="true">
-                    <i data-lucide="user-round-search"></i>
-                  </div>
-
-                  <div class="tools-grid__info flex-1 min-w-0">
-                    <h3 class="tools-grid__title">
-                      Analisar Perfil Profissional
-                    </h3>
-                    <span class="tools-grid__role">Candidato</span>
-                  </div>
-
-                  <i
-                    data-lucide="arrow-right"
-                    class="tools-grid__arrow"
-                    aria-hidden="true"
-                  ></i>
-                </div>
-
-                <p class="tools-grid__description">
-                  Avaliação completa do seu perfil profissional com
-                  recomendações personalizadas.
-                </p>
-
-                <div class="tools-grid__tags">
-                  <span class="tools-grid__tag">Análise</span>
-                  <span class="tools-grid__tag">Texto</span>
-                </div>
-              </button>
-
-              <!-- CARD 5 -->
-              <button
-                type="button"
-                class="card-base tools-grid__card"
-                aria-label="Avaliar Candidato"
-              >
-                <div class="tools-grid__header">
-                  <div class="tools-grid__icon" aria-hidden="true">
-                    <i data-lucide="badge-check"></i>
-                  </div>
-
-                  <div class="tools-grid__info flex-1 min-w-0">
-                    <h3 class="tools-grid__title">Avaliar Candidato</h3>
-                    <span class="tools-grid__role">Recrutador</span>
-                  </div>
-
-                  <i
-                    data-lucide="arrow-right"
-                    class="tools-grid__arrow"
-                    aria-hidden="true"
-                  ></i>
-                </div>
-
-                <p class="tools-grid__description">
-                  Análise de compatibilidade com avaliação de habilidades
-                  técnicas e comportamentais.
-                </p>
-
-                <div class="tools-grid__tags">
-                  <span class="tools-grid__tag">Avaliação</span>
-                  <span class="tools-grid__tag">Texto</span>
-                </div>
-              </button>
-
-              <!-- CARD 6 -->
-              <button
-                type="button"
-                class="card-base tools-grid__card"
-                aria-label="Comparar Candidatos"
-              >
-                <div class="tools-grid__header">
-                  <div class="tools-grid__icon" aria-hidden="true">
-                    <i data-lucide="users"></i>
-                  </div>
-
-                  <div class="tools-grid__info flex-1 min-w-0">
-                    <h3 class="tools-grid__title">Comparar Candidatos</h3>
-                    <span class="tools-grid__role">Recrutador</span>
-                  </div>
-
-                  <i
-                    data-lucide="arrow-right"
-                    class="tools-grid__arrow"
-                    aria-hidden="true"
-                  ></i>
-                </div>
-
-                <p class="tools-grid__description">
-                  Compare candidatos lado a lado com análise inteligente de
-                  perfis, habilidades e experiências.
-                </p>
-
-                <div class="tools-grid__tags">
-                  <span class="tools-grid__tag">Comparação</span>
-                  <span class="tools-grid__tag">Texto</span>
-                </div>
-              </button>
-
-              <!-- CARD 7 -->
-              <button
-                type="button"
-                class="card-base tools-grid__card"
-                aria-label="Gerar Perguntas"
-              >
-                <div class="tools-grid__header">
-                  <div class="tools-grid__icon" aria-hidden="true">
-                    <i data-lucide="messages-square"></i>
-                  </div>
-
-                  <div class="tools-grid__info flex-1 min-w-0">
-                    <h3 class="tools-grid__title">Gerar Perguntas</h3>
-                    <span class="tools-grid__role">Recrutador</span>
-                  </div>
-
-                  <i
-                    data-lucide="arrow-right"
-                    class="tools-grid__arrow"
-                    aria-hidden="true"
-                  ></i>
-                </div>
-
-                <p class="tools-grid__description">
-                  Gere perguntas de entrevista personalizadas com IA baseada no
-                  perfil do candidato.
-                </p>
-
-                <div class="tools-grid__tags">
-                  <span class="tools-grid__tag">Geração</span>
-                  <span class="tools-grid__tag">Entrevista</span>
-                </div>
-              </button>
-
-              <!-- CARD 8 -->
-              <button
-                type="button"
-                class="card-base tools-grid__card"
-                aria-label="Compatibilidade com Vaga"
-              >
-                <div class="tools-grid__header">
-                  <div class="tools-grid__icon" aria-hidden="true">
-                    <i data-lucide="scan-search"></i>
-                  </div>
-
-                  <div class="tools-grid__info flex-1 min-w-0">
-                    <h3 class="tools-grid__title">Compatibilidade com Vaga</h3>
-                    <span class="tools-grid__role">Recrutador</span>
-                  </div>
-
-                  <i
-                    data-lucide="arrow-right"
-                    class="tools-grid__arrow"
-                    aria-hidden="true"
-                  ></i>
-                </div>
-
-                <p class="tools-grid__description">
-                  Análise de compatibilidade entre candidato e vaga com
-                  avaliação de aderência.
-                </p>
-
-                <div class="tools-grid__tags">
-                  <span class="tools-grid__tag">Análise</span>
-                  <span class="tools-grid__tag">Matching</span>
-                </div>
-              </button>
-            </div>
-          </div>
-
-          <!-- State Machine UI -->
-
-          <!-- INPUT VIEW -->
-          <div class="tools-view tools-view--input">
-            <div
-              class="rounded-2xl border border-(--border-default) bg-(--bg-card) p-5 md:p-8"
-            >
-              <button
-                type="button"
-                id="backToCards"
-                class="tools-back-btn group"
-              >
-                <i data-lucide="arrow-left" class="tools-back-btn__icon"></i>
-                <span class="tools-back-btn__text">Voltar</span>
-              </button>
-
-              <div class="mt-4">
-                <span
-                  class="inline-flex rounded-full px-3 py-1 text-xs bg-(--bg-span-tools) text-(--text-tertiary)"
-                >
-                  Ferramenta IA
-                </span>
-
-                <h2
-                  id="toolTitle"
-                  class="mt-4 text-2xl md:text-3xl font-semibold text-(--text-primary)"
-                >
-                  Analisar Currículo
-                </h2>
-
-                <p
-                  id="toolDescription"
-                  class="mt-3 text-sm md:text-base text-(--text-subtitle)"
-                >
-                  Receba uma análise detalhada do currículo.
-                </p>
-              </div>
-
-              <div class="mt-10 space-y-6">
-                <div>
-                  <label
-                    for="title"
-                    class="mb-2 block text-sm font-medium text-(--text-primary)"
-                  >
-                    Título
-                  </label>
 
                   <input
-                    id="title"
                     type="text"
-                    placeholder="Ex: Desenvolvedor Front-end Senior"
-                    class="w-full rounded-2xl border border-(--border-default) bg-(--bg-primary) px-4 py-4 outline-none transition-all duration-200 hover:border-(--border-hover-strong) focus:border-(--color-accent) focus:shadow-[0_0_0_2px_rgba(16,185,129,0.25)]"
+                    maxlength="100"
+                    placeholder="Buscar Ferramentas..."
+                    class="tools-search__input"
                   />
                 </div>
 
-                <div>
+                <div class="tools-filters">
+                  <button type="button" class="tools-btn active">Todas</button>
+                  <button type="button" class="tools-btn">Candidato</button>
+                  <button type="button" class="tools-btn">Recrutador</button>
+                </div>
+              </div>
+
+              <div class="mt-6">
+                <p class="tools-found-count text-xs text-(--text-secondary)">
+                  <!-- JavaScript -->
+                </p>
+              </div>
+
+              <div
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-5"
+              >
+                <!-- CARDS TEMPLATE -->
+
+                <!-- CARD 1 -->
+                <button
+                  type="button"
+                  class="card-base tools-grid__card"
+                  aria-label="Analisar Currículo"
+                  data-tool-id="analysis-resume"
+                >
+                  <div class="tools-grid__header">
+                    <div class="tools-grid__icon" aria-hidden="true">
+                      <i data-lucide="scroll-text"></i>
+                    </div>
+
+                    <div class="tools-grid__info flex-1 min-w-0">
+                      <h3 class="tools-grid__title">Analisar Currículo</h3>
+                      <span class="tools-grid__role">Candidato</span>
+                    </div>
+
+                    <i
+                      data-lucide="arrow-right"
+                      class="tools-grid__arrow"
+                      aria-hidden="true"
+                    ></i>
+                  </div>
+
+                  <p class="tools-grid__description">
+                    Análise completa do seu currículo com pontos fortes, gaps e
+                    oportunidades de melhoria.
+                  </p>
+
+                  <div class="tools-grid__tags">
+                    <span class="tools-grid__tag">Análise</span>
+                    <span class="tools-grid__tag">Texto</span>
+                  </div>
+                </button>
+
+                <!-- CARD 2 -->
+                <button
+                  type="button"
+                  class="card-base tools-grid__card"
+                  aria-label="Melhorar Currículo"
+                  data-tool-id="improve-resume"
+                >
+                  <div class="tools-grid__header">
+                    <div class="tools-grid__icon" aria-hidden="true">
+                      <i data-lucide="wand-sparkles"></i>
+                    </div>
+
+                    <div class="tools-grid__info flex-1 min-w-0">
+                      <h3 class="tools-grid__title">Melhorar Currículo</h3>
+                      <span class="tools-grid__role">Candidato</span>
+                    </div>
+
+                    <i
+                      data-lucide="arrow-right"
+                      class="tools-grid__arrow"
+                      aria-hidden="true"
+                    ></i>
+                  </div>
+
+                  <p class="tools-grid__description">
+                    Receba sugestões inteligentes para otimizar seu currículo e
+                    aumentar suas chances de ser chamado.
+                  </p>
+
+                  <div class="tools-grid__tags">
+                    <span class="tools-grid__tag">Otimização</span>
+                    <span class="tools-grid__tag">Texto</span>
+                  </div>
+                </button>
+
+                <!-- CARD 3 -->
+                <button
+                  type="button"
+                  class="card-base tools-grid__card"
+                  aria-label="Simular Entrevista"
+                  data-tool-id="simulate-interview"
+                >
+                  <div class="tools-grid__header">
+                    <div class="tools-grid__icon" aria-hidden="true">
+                      <i data-lucide="audio-lines"></i>
+                    </div>
+
+                    <div class="tools-grid__info flex-1 min-w-0">
+                      <h3 class="tools-grid__title">Simular Entrevista</h3>
+                      <span class="tools-grid__role">Candidato</span>
+                    </div>
+
+                    <i
+                      data-lucide="arrow-right"
+                      class="tools-grid__arrow"
+                      aria-hidden="true"
+                    ></i>
+                  </div>
+
+                  <p class="tools-grid__description">
+                    Pratique com uma entrevista simulada por IA baseada na vaga
+                    desejada e receba feedback detalhado
+                  </p>
+
+                  <div class="tools-grid__tags">
+                    <span class="tools-grid__tag">Prática</span>
+                    <span class="tools-grid__tag">Texto</span>
+                  </div>
+                </button>
+
+                <!-- CARD 4 -->
+                <button
+                  type="button"
+                  class="card-base tools-grid__card"
+                  aria-label="Analisar Perfil"
+                  data-tool-id="analyze-profile"
+                >
+                  <div class="tools-grid__header">
+                    <div class="tools-grid__icon" aria-hidden="true">
+                      <i data-lucide="user-round-search"></i>
+                    </div>
+
+                    <div class="tools-grid__info flex-1 min-w-0">
+                      <h3 class="tools-grid__title">Analisar Perfil</h3>
+                      <span class="tools-grid__role">Candidato</span>
+                    </div>
+
+                    <i
+                      data-lucide="arrow-right"
+                      class="tools-grid__arrow"
+                      aria-hidden="true"
+                    ></i>
+                  </div>
+
+                  <p class="tools-grid__description">
+                    Avaliação completa do seu perfil profissional com
+                    recomendações personalizadas.
+                  </p>
+
+                  <div class="tools-grid__tags">
+                    <span class="tools-grid__tag">Análise</span>
+                    <span class="tools-grid__tag">Texto</span>
+                  </div>
+                </button>
+
+                <!-- CARD 5 -->
+                <button
+                  type="button"
+                  class="card-base tools-grid__card"
+                  aria-label="Avaliar Candidato"
+                  data-tool-id="evaluate-candidate"
+                >
+                  <div class="tools-grid__header">
+                    <div class="tools-grid__icon" aria-hidden="true">
+                      <i data-lucide="badge-check"></i>
+                    </div>
+
+                    <div class="tools-grid__info flex-1 min-w-0">
+                      <h3 class="tools-grid__title">Avaliar Candidato</h3>
+                      <span class="tools-grid__role">Recrutador</span>
+                    </div>
+
+                    <i
+                      data-lucide="arrow-right"
+                      class="tools-grid__arrow"
+                      aria-hidden="true"
+                    ></i>
+                  </div>
+
+                  <p class="tools-grid__description">
+                    Análise de compatibilidade com avaliação de habilidades
+                    técnicas e comportamentais.
+                  </p>
+
+                  <div class="tools-grid__tags">
+                    <span class="tools-grid__tag">Avaliação</span>
+                    <span class="tools-grid__tag">Texto</span>
+                  </div>
+                </button>
+
+                <!-- CARD 6 -->
+                <button
+                  type="button"
+                  class="card-base tools-grid__card"
+                  aria-label="Comparar Candidatos"
+                  data-tool-id="compare-candidates"
+                >
+                  <div class="tools-grid__header">
+                    <div class="tools-grid__icon" aria-hidden="true">
+                      <i data-lucide="users"></i>
+                    </div>
+
+                    <div class="tools-grid__info flex-1 min-w-0">
+                      <h3 class="tools-grid__title">Comparar Candidatos</h3>
+                      <span class="tools-grid__role">Recrutador</span>
+                    </div>
+
+                    <i
+                      data-lucide="arrow-right"
+                      class="tools-grid__arrow"
+                      aria-hidden="true"
+                    ></i>
+                  </div>
+
+                  <p class="tools-grid__description">
+                    Compare candidatos lado a lado com análise inteligente de
+                    perfis, habilidades e experiências.
+                  </p>
+
+                  <div class="tools-grid__tags">
+                    <span class="tools-grid__tag">Comparação</span>
+                    <span class="tools-grid__tag">Texto</span>
+                  </div>
+                </button>
+
+                <!-- CARD 7 -->
+                <button
+                  type="button"
+                  class="card-base tools-grid__card"
+                  aria-label="Gerar Perguntas"
+                  data-tool-id="generate-questions"
+                >
+                  <div class="tools-grid__header">
+                    <div class="tools-grid__icon" aria-hidden="true">
+                      <i data-lucide="messages-square"></i>
+                    </div>
+
+                    <div class="tools-grid__info flex-1 min-w-0">
+                      <h3 class="tools-grid__title">Gerar Perguntas</h3>
+                      <span class="tools-grid__role">Recrutador</span>
+                    </div>
+
+                    <i
+                      data-lucide="arrow-right"
+                      class="tools-grid__arrow"
+                      aria-hidden="true"
+                    ></i>
+                  </div>
+
+                  <p class="tools-grid__description">
+                    Gere perguntas de entrevista personalizadas com IA baseada
+                    no perfil do candidato.
+                  </p>
+
+                  <div class="tools-grid__tags">
+                    <span class="tools-grid__tag">Geração</span>
+                    <span class="tools-grid__tag">Entrevista</span>
+                  </div>
+                </button>
+
+                <!-- CARD 8 -->
+                <button
+                  type="button"
+                  class="card-base tools-grid__card"
+                  aria-label="Compatibilidade com vaga"
+                  data-tool-id="job-compatibility"
+                >
+                  <div class="tools-grid__header">
+                    <div class="tools-grid__icon" aria-hidden="true">
+                      <i data-lucide="scan-search"></i>
+                    </div>
+
+                    <div class="tools-grid__info flex-1 min-w-0">
+                      <h3 class="tools-grid__title">
+                        Compatibilidade com vaga
+                      </h3>
+                      <span class="tools-grid__role">Recrutador</span>
+                    </div>
+
+                    <i
+                      data-lucide="arrow-right"
+                      class="tools-grid__arrow"
+                      aria-hidden="true"
+                    ></i>
+                  </div>
+
+                  <p class="tools-grid__description">
+                    Análise de compatibilidade entre candidato e vaga com
+                    avaliação de aderência.
+                  </p>
+
+                  <div class="tools-grid__tags">
+                    <span class="tools-grid__tag">Análise</span>
+                    <span class="tools-grid__tag">Matching</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <!-- State Machine UI -->
+
+            <!-- INPUT VIEW -->
+            <div class="tools-view tools-view--input">
+              <div
+                class="rounded-2xl border border-(--border-default) bg-(--bg-card) p-4 md:p-8"
+              >
+                <button
+                  type="button"
+                  id="backToCards"
+                  class="tools-back-btn group"
+                >
+                  <i data-lucide="arrow-left" class="tools-back-btn__icon"></i>
+                  <span class="tools-back-btn__text">Voltar</span>
+                </button>
+
+                <div class="mt-4">
+                  <span
+                    class="inline-flex rounded-full px-3 py-1 text-xs bg-(--bg-span-tools) text-(--text-tertiary)"
+                  >
+                    Ferramenta IA
+                  </span>
+
+                  <h2
+                    id="toolTitle"
+                    class="mt-4 text-2xl md:text-3xl font-semibold text-(--text-primary)"
+                  >
+                    Analisar Currículo
+                  </h2>
+
+                  <p
+                    id="toolDescription"
+                    class="mt-3 text-sm md:text-base text-(--text-subtitle)"
+                  >
+                    Receba uma análise detalhada do currículo.
+                  </p>
+                </div>
+
+                <div class="mt-10 space-y-6">
+                  <div>
+                    <label
+                      for="title"
+                      class="mb-2 block text-sm font-medium text-(--text-primary)"
+                    >
+                      Título
+                    </label>
+
+                    <input
+                      id="title"
+                      type="text"
+                      placeholder="Ex: Desenvolvedor Front-end Senior"
+                      class="w-full rounded-2xl border border-(--border-default) bg-(--bg-primary) px-4 py-4 outline-none transition-all duration-200 hover:border-(--border-hover-strong) focus:border-(--color-accent) focus:shadow-[0_0_0_2px_rgba(16,185,129,0.25)]"
+                    />
+                  </div>
+
                   <label
                     for="description"
                     class="mb-2 block text-sm font-medium text-(--text-primary)"
@@ -1156,118 +1220,176 @@
 
                   <textarea
                     id="description"
+                    placeholder="Quanto mais contexto, mais precisa será a resposta da IA."
                     rows="10"
-                    placeholder="Digite sua descrição..."
                     class="w-full resize-none rounded-2xl border border-(--border-default) bg-(--bg-primary) px-4 py-4 outline-none transition-all duration-200 hover:border-(--border-hover-strong) focus:border-(--color-accent) focus:shadow-[0_0_0_2px_rgba(16,185,129,0.25)]"
                   ></textarea>
                 </div>
-              </div>
 
-              <div class="mt-8 flex justify-end">
-                <button
-                  type="button"
-                  id="runTool"
-                  class="rounded-2xl bg-(--bg-button) px-6 py-3 cursor-pointer text-sm font-medium text-(--text-primary) hover:opacity-80 active:scale-95 transition-all"
-                >
-                  Avaliar com IA
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- LOADING VIEW -->
-          <div class="tools-view tools-view--loading">
-            <div
-              class="flex min-h-[70vh] flex-col items-center justify-center text-center"
-            >
-              <!-- ORBIT -->
-              <div class="relative w-20 h-20 flex items-center justify-center">
-                <!-- GLOW -->
-                <div
-                  class="absolute inset-0 rounded-full bg-(--color-accent)/10 blur-2xl animate-pulse"
-                ></div>
-
-                <!-- ICON -->
-                <i
-                  data-lucide="sparkles"
-                  class="w-7 h-7 text-(--color-accent) z-10 animate-pulse"
-                >
-                </i>
-
-                <!-- RING -->
-                <div
-                  class="absolute inset-0 rounded-full border border-(--border-hover-strong)/30"
-                ></div>
-
-                <!-- ORBIT DOTS (mesma rotação) -->
-                <div class="absolute inset-0 animate-spin-slow">
-                  <span
-                    class="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-(--color-accent)"
-                  ></span>
-                  <span
-                    class="absolute bottom-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-(--color-accent)/70"
-                  ></span>
-                  <span
-                    class="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-(--color-accent)/60"
-                  ></span>
-                  <span
-                    class="absolute right-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-(--color-accent)/60"
-                  ></span>
+                <div class="mt-8 flex justify-end">
+                  <button
+                    type="button"
+                    id="runTool"
+                    class="rounded-2xl bg-(--bg-button) px-6 py-3 cursor-pointer text-sm font-medium text-(--text-primary) hover:opacity-80 active:scale-95 transition-all"
+                  >
+                    Avaliar com IA
+                  </button>
                 </div>
               </div>
-
-              <!-- TEXT -->
-              <h2 class="mt-8 text-xl font-semibold text-(--text-primary)">
-                Analisando...
-              </h2>
-
-              <p class="mt-3 max-w-md text-sm text-(--text-subtitle)">
-                Processando e estruturando os melhores resultados.
-              </p>
             </div>
-          </div>
 
-          <!-- RESULT VIEW -->
-          <div class="tools-view tools-view--result">
-            <div
-              class="rounded-3xl border border-(--border-default) bg-(--bg-card) p-5 md:p-8"
-            >
-              <button
-                type="button"
-                id="backToInput"
-                class="tools-back-btn group"
-              >
-                <i data-lucide="arrow-left" class="tools-back-btn__icon"></i>
-                <span class="tools-back-btn__text">Voltar para edição</span>
-              </button>
-
+            <!-- LOADING VIEW -->
+            <div class="tools-view tools-view--loading">
               <div
-                class="mt-8 rounded-3xl border border-(--border-default) p-8 text-center"
+                class="flex flex-col min-h-[70vh] items-center justify-center text-center"
               >
+                <!-- ORBIT -->
                 <div
-                  class="mx-auto flex h-32 w-32 items-center justify-center rounded-full border border-emerald-500/20 bg-emerald-500/10 text-4xl font-bold text-emerald-400"
+                  class="relative w-20 h-20 flex items-center justify-center"
                 >
-                  92%
+                  <!-- GLOW -->
+                  <div
+                    class="absolute inset-0 rounded-full bg-(--color-accent)/10 blur-2xl animate-pulse"
+                  ></div>
+
+                  <!-- ICON -->
+                  <i
+                    data-lucide="sparkles"
+                    class="w-7 h-7 text-(--color-accent) z-10 animate-pulse"
+                  >
+                  </i>
+
+                  <!-- RING -->
+                  <div
+                    class="absolute inset-0 rounded-full border border-(--border-hover-strong)/30"
+                  ></div>
+
+                  <!-- ORBIT DOTS (mesma rotação) -->
+                  <div class="absolute inset-0 animate-spin-slow">
+                    <span
+                      class="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-(--color-accent)"
+                    ></span>
+                    <span
+                      class="absolute bottom-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-(--color-accent)/70"
+                    ></span>
+                    <span
+                      class="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-(--color-accent)/60"
+                    ></span>
+                    <span
+                      class="absolute right-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-(--color-accent)/60"
+                    ></span>
+                  </div>
                 </div>
 
-                <h2 class="mt-6 text-2xl font-semibold">
-                  Porcentagem de Excelente
+                <!-- TEXT -->
+                <h2 class="mt-8 text-xl font-semibold text-(--text-primary)">
+                  Analisando...
                 </h2>
 
-                <p class="mt-3 text-(--text-subtitle)">
-                  Resultado da análise realizada pela IA.
+                <p class="mt-3 max-w-md text-sm text-(--text-subtitle)">
+                  Processando e estruturando os melhores resultados.
                 </p>
               </div>
+            </div>
 
-              <div class="mt-8">
-                <p class="text-sm text-(--text-subtitle) mb-3">
-                  Resposta da IA:
-                </p>
+            <!-- RESULT VIEW -->
+            <div class="tools-view tools-view--result">
+              <div
+                class="rounded-3xl border border-(--border-default) bg-(--bg-card) p-5 md:p-8 space-y-6"
+              >
+                <!-- BACK -->
+                <button
+                  type="button"
+                  id="backToInput"
+                  class="tools-back-btn group"
+                >
+                  <i data-lucide="arrow-left" class="tools-back-btn__icon"></i>
+
+                  <span class="tools-back-btn__text"> Voltar para edição </span>
+                </button>
+
+                <!-- HERO -->
 
                 <div
-                  id="resultContent"
-                  class="rounded-2xl border border-(--border-default) bg-(--bg-card) p-6 text-sm leading-7 text-(--text-primary) min-h-24"
-                ></div>
+                  class="relative overflow-hidden rounded-3xl border border-(--border-default) bg-(--bg-secondary) px-6 py-8 text-center"
+                >
+                  <!-- Glow -->
+
+                  <div class="hero-glow"></div>
+
+                  <!-- ORB -->
+                  <div class="hero-ai mx-auto">
+                    <div class="hero-ai__ring hero-ai__ring--1"></div>
+
+                    <div class="hero-ai__ring hero-ai__ring--2"></div>
+
+                    <div class="hero-ai__core">
+                      <i
+                        data-lucide="bot"
+                        class="w-7 h-7 text-(--text-tertiary)"
+                      ></i>
+                    </div>
+                  </div>
+
+                  <!-- TITLE -->
+                  <h2
+                    class="mt-6 text-2xl md:text-3xl font-semibold text-(--text-primary)"
+                  >
+                    NeuraHire AI
+                  </h2>
+
+                  <!-- SUBTITLE -->
+                  <p
+                    class="mx-auto mt-3 max-w-xl text-sm md:text-base leading-7 text-(--text-subtitle)"
+                  >
+                    Inteligência artificial especializada em recrutamento,
+                    carreira e desenvolvimento profissional.
+                  </p>
+                </div>
+
+                <!-- RESULT CARDS -->
+
+                <article
+                  class="bg-(--bg-secondary) border border-(--border-default) rounded-3xl p-6"
+                >
+                  <div class="flex items-center gap-2 mb-4">
+                    <i
+                      data-lucide="bot-message-square"
+                      class="w-4 h-4 text-(--status-future)"
+                      aria-hidden="true"
+                    ></i>
+
+                    <h3 class="text-sm font-semibold text-(--text-primary)">
+                      Análise
+                    </h3>
+                  </div>
+
+                  <div
+                    id="card-result"
+                    class="text-(--text-subtitle) leading-7 space-y-4"
+                  ></div>
+                </article>
+
+                <!-- FOOTER -->
+
+                <div
+                  class="pt-6 border-t border-(--border-default) text-center space-y-1"
+                >
+                  <p class="text-sm text-(--text-subtitle)">
+                    Desenvolvido por
+
+                    <span
+                      data-page="contact"
+                      class="nav-link text-(--text-tertiary) font-semibold tracking-wide hover:opacity-75 cursor-pointer"
+                    >
+                      Lucas Silva
+                    </span>
+                  </p>
+
+                  <p class="text-xs text-(--text-subtitle)">
+                    NeuraHire AI • Intelligent Career System
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -1507,7 +1629,7 @@
               </div>
             </div>
 
-            <!-- ITEM: TEMA -->
+            <!-- ITEM: THEME -->
             <div
               class="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6 pt-4 mt-4 border-t border-white/5"
             >
@@ -1545,7 +1667,7 @@
                 Define a profundidade das análises geradas pela IA
               </p>
 
-              <select class="settings-select">
+              <select id="detailLevel" class="settings-select">
                 <option>Resumido</option>
                 <option selected>Detalhado</option>
                 <option>Extensivo</option>
@@ -1559,7 +1681,7 @@
                 Controla o estilo de comunicação da IA
               </p>
 
-              <select class="settings-select">
+              <select id="tone" class="settings-select">
                 <option>Direto e Objetivo</option>
                 <option selected>Construtivo e Encorajador</option>
                 <option>Acadêmico e Formal</option>
@@ -1596,7 +1718,7 @@
                   Acompanhe o
                   <span
                     data-page="labs"
-                    class="nav-link text-emerald-400 hover:opacity-75 cursor-pointer"
+                    class="nav-link text-(--text-tertiary) hover:opacity-75 cursor-pointer"
                   >
                     roadmap do produto
                   </span>
@@ -1838,7 +1960,7 @@
                     data-lucide="loader-circle"
                     class="h-3 w-3 mt-0.5 text-(--status-active) shrink-0 animate-spin"
                   ></i>
-                  <span>Sistema de autenticação e contas</span>
+                  <span>Migração para React</span>
                 </li>
 
                 <li class="flex items-start gap-2">
@@ -1894,7 +2016,7 @@
                     data-lucide="circle"
                     class="h-3 w-3 mt-0.5 text-(--status-pending) shrink-0"
                   ></i>
-                  <span>Migração para React</span>
+                  <span>Sistema de autenticação, contas e histórico</span>
                 </li>
 
                 <li class="flex items-start gap-2">
@@ -1923,7 +2045,7 @@
               </ul>
             </div>
 
-            <!-- FUTURO (VISÃO) -->
+            <!-- FUTURE (VISÃO) -->
             <div
               class="relative border-l border-blue-500/30 pl-5 sm:pl-6 space-y-4"
             >
@@ -1990,16 +2112,15 @@
             </div>
 
             <div class="flex flex-wrap gap-2.5">
-              <span class="skill-chip">JavaScript</span>
+              <span class="skill-chip">Javascript ES6+ </span>
               <span class="skill-chip">HTML5</span>
               <span class="skill-chip">CSS3</span>
               <span class="skill-chip">Tailwind CSS</span>
               <span class="skill-chip">Node.js</span>
               <span class="skill-chip">Git</span>
               <span class="skill-chip">GitHub</span>
-              <span class="skill-chip">
-                React
-                <span
+              <span class="skill-chip"
+                >React<span
                   class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-400/10 text-(--status-pending)"
                 >
                   Planejado
@@ -2086,15 +2207,14 @@
               <!-- RIGHT - FORM (FORMSUBMIT) -->
               <div class="p-6 rounded-xl bg-[#1e1e22] border border-[#2e2e34]">
                 <h3 class="text-lg font-semibold text-(--text-primary) mb-4">
-                  Enviar mensagem
+                  Entre em Contato
                 </h3>
 
                 <form
                   action="https://formsubmit.co/lucassilva1710@yahoo.com"
                   method="POST"
-                  class="space-y-4"
+                  class="contact-form space-y-4"
                 >
-                  <!-- HIDDEN CONFIG -->
                   <input type="hidden" name="_captcha" value="false" />
 
                   <!-- NAME -->
@@ -2103,7 +2223,6 @@
                     name="name"
                     placeholder="Seu nome"
                     class="w-full p-3 rounded-lg bg-[#131316] border border-[#2e2e34] text-(--text-primary) outline-none focus:border-emerald-500/40 transition-all duration-300 ease-out"
-                    required
                   />
 
                   <!-- EMAIL -->
@@ -2112,24 +2231,15 @@
                     name="email"
                     placeholder="Seu email"
                     class="w-full p-3 rounded-lg bg-[#131316] border border-[#2e2e34] text-(--text-primary) outline-none focus:border-emerald-500/40 transition-all duration-300 ease-out"
-                    required
                   />
 
-                  <!-- MESSAGE -->
-                  <div class="relative">
-                    <textarea
-                      name="message"
-                      placeholder="Sua mensagem..."
-                      maxlength="1000"
-                      rows="5"
-                      class="w-full p-3 rounded-lg bg-[#131316] border border-[#2e2e34] text-(--text-primary) outline-none resize-none focus:border-emerald-500/40 transition-all duration-300 ease-out"
-                      required
-                    ></textarea>
-
-                    <p class="text-xs text-gray-400 mt-1 flex justify-end">
-                      <span id="char-count">0</span>/1000 caracteres
-                    </p>
-                  </div>
+                  <textarea
+                    name="message"
+                    placeholder="Sua mensagem..."
+                    maxlength="1000"
+                    rows="5"
+                    class="w-full p-3 rounded-lg bg-[#131316] border border-[#2e2e34] text-(--text-primary) outline-none resize-none focus:border-emerald-500/40 transition-all duration-300 ease-out"
+                  ></textarea>
 
                   <!-- BUTTON -->
                   <button
@@ -2151,7 +2261,7 @@
       <footer
         class="flex flex-col items-center gap-8 md:gap-10 h-auto py-12 md:py-16 mx-6 border-t border-(--border-default) text-sm text-(--text-subtitle) u-hidden"
       >
-        <!-- Brand / descrição -->
+        <!-- Brand / description -->
         <div class="text-center max-w-md space-y-3">
           <div class="flex items-center gap-2 justify-center">
             <img
@@ -2211,7 +2321,6 @@
           </button>
         </div>
 
-        <!-- frase institucional -->
         <p class="text-xs text-(--text-subtitle) text-center max-w-md">
           Construído com JavaScript, Node.js e IA para transformar o
           recrutamento em decisões mais inteligentes e rápidas.

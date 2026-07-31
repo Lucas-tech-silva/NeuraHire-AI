@@ -9,13 +9,14 @@ const menuClose = document.querySelector(".menu-close");
 
 const clock = document.querySelector(".clock");
 
+const toast = document.querySelector("#toast");
 
 /* =========================================================
    MOBILE MENU
 ========================================================= */
 
 export const initMobileMenu = () => {
-  if (!menuToggle || !menuClose || !sidebar || !sidebarOverlay) return;
+  if (!sidebar || !sidebarOverlay || !menuToggle || !menuClose) return;
 
   menuToggle.addEventListener("click", openSidebar);
   menuClose.addEventListener("click", closeSidebar);
@@ -33,7 +34,6 @@ export const closeSidebar = () => {
   sidebar.classList.add("-translate-x-full");
   document.body.classList.remove("overflow-hidden");
 };
-
 
 /* =========================================================
    LIVE CLOCK
@@ -55,4 +55,23 @@ const updateTime = () => {
 
   clock.textContent = `${hours}:${minutes}`;
   clock.setAttribute("datetime", now.toISOString());
+};
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+export const showToast = (message, type) => {
+  if (!toast) return;
+
+  toast.textContent = message;
+
+  toast.classList.add("show");
+  toast.classList.add(type);
+
+  clearTimeout(toast.timer);
+
+  toast.timer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3800);
 };
