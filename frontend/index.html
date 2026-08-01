@@ -255,7 +255,7 @@
 
     <div class="flex flex-col min-h-screen lg:ml-[16.3rem]">
       <!-- Main Content -->
-      <main class="flex-1 min-h-0 overflow-hidden pt-18 px-4 sm:px-6">
+      <main class="flex-1 min-h-0 h-full overflow-hidden pt-18 px-4 sm:px-6">
         <!-- ===================================== -->
         <!-- HOME -->
         <!-- ===================================== -->
@@ -715,15 +715,15 @@
         <!-- ===================================== -->
         <!-- AI WORKSPACE -->
         <!-- ===================================== -->
-        <section id="workspace" class="page">
+        <section id="workspace" class="page h-full min-h-0">
           <!-- WORKSPACE ROOT -->
           <div
-            class="h-[calc(100dvh-7.5rem)] w-full flex flex-col rounded-3xl border border-(--border-soft) bg-(--bg-secondary)"
+            class="h-[calc(100dvh-7.5rem)] min-h-0 w-full flex flex-col overflow-hidden rounded-3xl border border-(--border-soft) bg-(--bg-secondary)"
           >
             <!-- CHAT AREA -->
             <div
               id="chatMessages"
-              class="flex-1 min-h-0 overflow-y-auto overscroll-contain scroll-smooth space-y-4 px-4 sm:px-6 py-4"
+              class="flex-1 min-h-0 overflow-y-auto overscroll-contain scroll-smooth px-4 sm:px-6 py-4"
             >
               <!-- AI MESSAGE -->
               <div class="flex gap-4 justify-start">

@@ -82,6 +82,8 @@
 .page.active {
   display: flex;
   flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
   animation: fadeIn 0.25s ease;
 }
 
@@ -488,7 +490,6 @@ GRID CARDS
   transition: all 0.3s ease;
   z-index: 9999;
 }
-
 
 /* ESTADO VISÍVEL */
 
