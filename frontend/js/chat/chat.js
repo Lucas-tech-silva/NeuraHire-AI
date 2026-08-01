@@ -5,10 +5,12 @@ import { generateAIResponse } from "../api/api.js";
    DOM ELEMENTS
 ========================================================= */
 
-const chatInput = document.querySelector("#chatInput");
-const sendBtn = document.querySelector("#sendBtn");
 const chatMessages = document.querySelector("#chatMessages");
 const aiLoading = document.querySelector("#aiLoading");
+
+const chatInput = document.querySelector("#chatInput");
+const sendBtn = document.querySelector("#sendBtn");
+const quickActions = document.querySelectorAll(".quick-action");
 
 /* =========================================================
    CHAT - NeuraHire AI 
@@ -19,6 +21,8 @@ export const initChat = () => {
 
   handleKeyboard();
   handleSendMessage();
+  handleQuickActions();
+  handleInputChange();
 };
 
 const clearAndFocusInput = () => {
@@ -172,5 +176,40 @@ const handleKeyboard = () => {
 const handleSendMessage = () => {
   sendBtn.addEventListener("click", () => {
     sendMessage();
+  });
+};
+
+const updateQuickActionsState = () => {
+  const hasText = chatInput.value.trim().length > 0;
+
+  quickActions.forEach((quickAction) => {
+    quickAction.classList.toggle("cursor-not-allowed", hasText);
+    quickAction.classList.toggle("cursor-pointer", !hasText);
+    quickAction.classList.toggle("opacity-50", hasText);
+    quickAction.classList.toggle("pointer-events-none", hasText);
+  });
+};
+
+const handleInputChange = () => {
+  chatInput.addEventListener("input", () => {
+    updateQuickActionsState();
+  });
+};
+
+const handleQuickActions = () => {
+  if (!quickActions.length) return;
+
+  quickActions.forEach((quickAction) => {
+    quickAction.addEventListener("click", () => {
+      if (chatInput.value.trim()) {
+        return;
+      }
+
+      chatInput.value = quickAction.dataset.message;
+
+      updateQuickActionsState();
+
+      chatInput.focus();
+    });
   });
 };
