@@ -8,7 +8,7 @@ export const generateAIResponse = async (
   selectedToolId,
   aiSettings,
 ) => {
-  const response = await fetch("http://127.0.0.1:4000/api/generate", {
+  const response = await fetch("https://neurahire-ai.onrender.com/api/generate", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

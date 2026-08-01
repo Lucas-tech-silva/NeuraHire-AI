@@ -10,11 +10,17 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.json({
+    status: "online",
+    service: "NeuraHire AI API",
+  });
+});
+
 app.use("/api", aiRoutes);
 
 const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Servidor em execução na porta ${PORT}`);
 });
-
