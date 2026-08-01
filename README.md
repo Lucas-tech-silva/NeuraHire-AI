@@ -21,7 +21,7 @@
   <br>
 
   <a href="https://neura-hire-ai.vercel.app/" target="_blank">
-    <img src="https://img.shields.io/badge/Acessar-NeuraHire_AI-22C55E?style=for-the-badge" alt="NeuraHire AI">
+    <img src="https://img.shields.io/badge/Acessar-NeuraHire_AI-1B946E?style=for-the-badge" alt="NeuraHire AI">
   </a>
 
   </div>
@@ -33,6 +33,12 @@
   <p align="center">
     <img src="./frontend/assets/mockup/NeuraHire-Mockup.jpg" width="650" alt="NeuraHire AI">
   </p>
+
+  <p align="center">
+    <i>Interface moderna, responsiva e focada em experiência do usuário para recrutamento e desenvolvimento profissional.</i>
+  </p>
+
+  <br>
 
 ---
 
@@ -48,14 +54,14 @@ O projeto foi desenvolvido com foco em uma interface moderna, intuitiva e respon
 
 # ✨ Funcionalidades
 
-- 📄 Resume Analysis
-- ✍️ Improve Resume
-- 💬 AI Career Chat
-- 🎤 Interview Simulation
-- ⚙️ Configurações da IA
-- 🌙 Interface Dark Mode
-- 📱 Layout Responsivo
-- 🤖 Integração com Inteligência Artificial
+- 📄 Análise inteligente de currículos
+- ✍️ Otimização e melhoria de currículos
+- 🎤 Simulação de entrevistas com feedback personalizado
+- 💬 Chat com IA para orientação profissional
+- ⚙️ Configurações personalizadas do comportamento da IA
+- 👥 Dashboard para candidatos e recrutadores
+- 🤖 8 ferramentas de IA integradas
+- 🌙 Interface Dark Mode responsiva
 
 ---
 
@@ -73,7 +79,7 @@ O projeto foi desenvolvido com foco em uma interface moderna, intuitiva e respon
 - Node.js
 - Express.js
 
-## Inteligência Artificial
+### Inteligência Artificial
 
 - Groq API
 
@@ -185,11 +191,13 @@ O projeto continuará evoluindo conforme novos recursos forem sendo desenvolvido
 
 ### ✅ Versão Atual (v1.0)
 
-- Chat com IA
-- Resume Analysis
-- Improve Resume
-- Interview Simulation
-- Dashboard inicial
+- 8 ferramentas de IA integradas
+- Dashboard para candidatos e recrutadores
+- Análise inteligente de currículos
+- Simulação de entrevistas com feedback
+- Chat com IA para orientação profissional
+- Configurações personalizadas da IA
+- Interface responsiva com Dark Mode
 
 ### 🔄 v1.1
 
@@ -234,14 +242,12 @@ Desenvolvido por **Lucas Silva**.
 
 - 📧 Email: [lucassilva1710@yahoo.com](mailto:lucassilva1710@yahoo.com?subject=Oportunidade%20-%20NeuraHire%20AI&body=Olá%20Lucas,%0A%0AVi%20o%20projeto%20NeuraHire%20AI%20e%20gostaria%20de%20conversar%20sobre%20uma%20oportunidade,%20parceria%20ou%20possível%20colaboração.)
 
-  <br>
-
 ---
 
   <br>
 
   <p align="center">
-    <i>💚 "A tecnologia não substitui pessoas; ela potencializa talentos. O NeuraHire AI nasceu para conectar profissionais às melhores oportunidades." — Lucas Silva</i>
+    <i>"A tecnologia não substitui talentos; ela potencializa pessoas. O NeuraHire AI nasceu para transformar a forma como profissionais encontram oportunidades." — Lucas Silva</i>
   </p>
 
   <br>
