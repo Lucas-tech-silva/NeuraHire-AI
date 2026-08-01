@@ -105,7 +105,7 @@ const updateHeader = (page) => {
 
   const sidebarButton = getSidebarButton(page);
 
-  if (!headerTitle || headerDesc || !sidebarButton) return;
+  if (!headerTitle || !headerDesc || !sidebarButton) return;
 
   headerTitle.textContent = sidebarButton.dataset.title;
   headerDesc.textContent = sidebarButton.dataset.description;
