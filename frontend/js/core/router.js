@@ -40,9 +40,11 @@ export const initRouter = () => {
 };
 
 const renderPage = (page, filter) => {
-  window.scrollTo(0, 0)
+  document.body.classList.toggle("workspace-active", page === "workspace");
 
-  updatePages(page);  
+  window.scrollTo(0, 0);
+
+  updatePages(page);
   updateSidebar(page);
   updateFooter(page);
   updateHeader(page);
