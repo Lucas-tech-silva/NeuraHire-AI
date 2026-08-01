@@ -26,9 +26,14 @@
 
   </div>
 
+  <br>
+
 ---
 
 # 🎨 Interface
+
+
+  <br>
 
   <p align="center">
     <img src="./frontend/assets/mockup/NeuraHire-Mockup.jpg" width="650" alt="NeuraHire AI">
