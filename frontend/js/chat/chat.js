@@ -100,9 +100,9 @@ const renderMessage = (text, sender) => {
         <div class="max-w-[85%] sm:max-w-[70%] rounded-3xl ${bubbleStyle} px-4 sm:px-5 py-3 relative">
 
           <div class="message-content transition-all duration-300">
-            <div class="message-text text-xs sm:text-sm leading-relaxed ${textColor}">
+            <p class="message-text text-xs sm:text-sm leading-relaxed ${textColor}">
               ${shortText}
-            </div>
+            </p>
           </div>
 
           ${
@@ -141,11 +141,11 @@ const renderMessage = (text, sender) => {
         const liveIcon = toggleBtn.querySelector("svg");
 
         if (isCollapsed) {
-          textParagraph.textContent = longText;
+          textParagraph.innerHTML = longText;
           btnText.textContent = "Ver menos";
           if (liveIcon) liveIcon.style.transform = "rotate(180deg)";
         } else {
-          textParagraph.textContent = shortText;
+          textParagraph.innerHTML = shortText;
           btnText.textContent = "Ver mais";
           if (liveIcon) liveIcon.style.transform = "rotate(0deg)";
         }
