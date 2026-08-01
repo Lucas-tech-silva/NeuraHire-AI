@@ -28,6 +28,8 @@ export const initChat = () => {
 const clearAndFocusInput = () => {
   chatInput.value = "";
 
+  updateQuickActionsState();
+
   chatInput.focus();
 };
 
